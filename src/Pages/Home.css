@@ -1,0 +1,12 @@
+.homepage_bg {
+
+  margin: 0;
+
+  background:#1E1E1E;;
+width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}

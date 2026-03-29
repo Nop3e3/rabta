@@ -1,0 +1,139 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100;300;400;500;600;700&display=swap');
+
+p {
+  margin: 0;
+  font-family: 'Lexend Exa', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: 'Lexend Exa', sans-serif;
+}
+/* Root font sizing system */
+:root {
+  font-size: 16px; /* Base font size */
+  --font-small: 0.75rem;   /* 12px */
+  --font-medium: 0.875rem; /* 14px */
+  --font-large: 1rem;      /* 16px */
+  --font-xlarge: 2rem;     /* 32px */
+}
+
+body {
+  margin: 0;
+  font-family: 'Lexend Exa', sans-serif;
+  background: radial-gradient(circle at top, #1a1a1a, #0d0d0d);
+}
+
+/* Full height sidebar with Apple-style glass */
+.sidebar {
+display: flex;
+padding: 0 12px;
+flex-direction: column;
+align-items: flex-start;
+gap: 20px;
+align-self: stretch;
+  font-family: 'Lexend Exa', sans-serif;
+border-radius: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+
+  color: #fff;
+}
+
+/* Logo */
+.logo {
+  text-align: center;
+  color: #d6f27c;
+  font-size: var(--font-xlarge); /* 32px */
+  margin-bottom: 1.25rem;
+}
+
+/* Profile */
+.profile {
+  text-align: center;
+  display: flex;
+flex-direction: column;
+align-items: center;
+gap: 5px;
+align-self: stretch;
+}
+
+.pfp {
+  width: 5.625rem;   /* 90px */
+  height: 5.625rem;  /* 90px */
+  border-radius: 50%;
+  border: 0.25rem solid rgba(255,255,255,0.1); /* 4px */
+}
+
+.username {
+  color: #aaa;
+  margin-top: -0.3125rem; /* -5px */
+  font-size: var(--font-medium);
+}
+
+/* Badge */
+.badge {
+  margin-top: 0.625rem; /* 10px */
+  color: #b7f58c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3125rem; /* 5px */
+  font-size: var(--font-small);
+}
+
+/* Stars */
+.stars {
+  color: #d6f27c;
+  margin-top: 0.625rem; /* 10px */
+}
+
+.reviews {
+  color: #aaa;
+  font-size: var(--font-small);
+}
+
+/* Sections */
+.section {
+  margin-top: 1.5625rem; /* 25px */
+  color: #777;
+  font-size: var(--font-small);
+}
+
+/* Menu items */
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.9375rem; /* 15px */
+  padding: 0.75rem; /* 12px */
+  border-radius: 0.75rem; /* 12px */
+  cursor: pointer;
+  color: #ddd;
+  font-size: var(--font-medium);
+}
+
+.item:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+/* Active */
+.item.active {
+  background: linear-gradient(135deg, #c6e36b, #6b7a2b);
+  color: #fff;
+}
+
+/* Logout */
+.logout {
+  margin-top: 1.25rem; /* 20px */
+  padding: 0.75rem;    /* 12px */
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;       /* 10px */
+  color: #ccc;
+  font-size: var(--font-medium);
+}
