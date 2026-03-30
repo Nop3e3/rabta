@@ -1,0 +1,48 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100;300;400;500;600;700&display=swap');
+
+p {
+  margin: 0;
+  font-family: 'Lexend Exa', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: 'Lexend Exa', sans-serif;
+}
+:root {
+
+  --font-small: 0.75rem;   /* 12px */
+  --font-medium: 0.875rem; /* 14px */
+  --font-large: 1rem;      /* 16px */
+  --font-xlarge: 2rem;     /* 32px */
+}
+.SidebarCompActive {
+    color: #FFF;
+background-color: #ffffff00;
+text-align: center;
+font-family: "Lexend Exa";
+font-size: var(--font-small);
+font-style: normal;
+font-weight: 400;
+line-height: 16px; /* 100% */
+stroke: none;
+
+border: 0px none;
+border-radius: 8px;
+border: 1px solid #F5FFC1;
+background: linear-gradient(180deg, rgba(237, 254, 142, 0.60) 0%, rgba(86, 94, 36, 0.60) 100%);
+display: flex;
+align-items: center;
+
+gap: 10px;
+display: flex;
+padding: 8px;
+align-items: center;
+gap: 16px;
+width: 100%;
+align-self: stretch;
+}
+.icon{
+    height: 20px;
+    aspect-ratio: 1/1;
+}
