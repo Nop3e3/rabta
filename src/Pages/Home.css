@@ -2,19 +2,51 @@
 
   margin: 0;
 
-  background:#1E1E1E;;
-width: 100%;
-  height: 100vh;
+background:#1E1E1E lightgray 50% / cover no-repeat;
+
+padding-bottom: 50px;
+
+  height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-start;
 
 }
 .sidebarcon{
-  width: 100%;
+  width: 99%;
   height: 100vh;
+  padding-left: 2%;
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding-left: 1rem;
+
+}
+.mainconnn{
+padding-top: 20px;
+display: flex;
+flex-direction: column;
+padding-right: 1%;
+gap:56px;
+
+align-items: flex-end;
+  width: 80%;
+}
+.secsh{
+  width: 100%;
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+.qa-grid{
+  display: flex;
+justify-content: center;
+align-items: flex-end;
+width: 100%;
+
+gap: 2.65%;
+
+flex-wrap: wrap;
+align-self: stretch;
+justify-content: flex-start;
 }

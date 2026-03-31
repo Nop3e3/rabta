@@ -1,0 +1,43 @@
+.searchttl{
+    color: #FFF;
+font-family: "Lexend Exa";
+font-size: var(--font-large);
+display: flex;
+align-items: center;
+width: 100%;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+.Searchbar{
+    display: flex;
+height: 60px;
+padding: 0 8px;
+padding-left: 2%;
+padding-right: 2%;
+align-items: center;
+gap: 6px;
+width: 100%;
+border-radius: 8px;
+background: rgba(255, 255, 255, 0.11);
+}
+
+
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100;300;400;500;600;700&display=swap');
+
+p {
+  margin: 0;
+  font-family: 'Lexend Exa', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: 'Lexend Exa', sans-serif;
+}
+:root {
+
+  --font-small: 0.75rem;   /* 12px */
+  --font-medium: 0.875rem; /* 14px */
+  --font-large: 1rem;      /* 16px */
+  --font-xlarge: 2rem;     /* 32px */
+}

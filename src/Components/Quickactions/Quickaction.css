@@ -1,0 +1,62 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100;300;400;500;600;700&display=swap');
+
+p {
+  margin: 0;
+  font-family: 'Lexend Exa', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: 'Lexend Exa', sans-serif;
+}
+:root {
+
+  --font-small: 0.75rem;   /* 12px */
+  --font-medium: 0.875rem; /* 14px */
+  --font-large: 1rem;      /* 16px */
+  --font-xlarge: 2rem;     /* 32px */
+}
+.qaimage{
+    width: 174.613px;
+height: 170.046px;
+object-fit: contain;
+}
+.qattl{
+    color: #FFF;
+font-family: "Lexend Exa";
+font-size:1.2rem;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+.qacap{
+    color: #FFF;
+font-family: "Lexend Exa";
+font-size:var(--font-small);
+font-style: normal;
+color: rgba(255, 255, 255, 0.61);
+
+font-family: "Lexend Exa";
+
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+.quickaction{
+width: 23%;
+display: flex;
+height: 359.23px;
+padding: 20px 12px;
+flex-direction: column;
+justify-content: space-between;
+align-items: center;
+
+
+border-radius: 15.442px;
+border: 1.93px solid #2C2A32;
+
+background: linear-gradient(0deg, #141414 -51.88%, #2C2A32 100%);
+
+/* SHADOW */
+box-shadow: 0 7px 13.1px 6px rgba(30, 30, 30, 0.13);
+}

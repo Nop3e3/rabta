@@ -41,26 +41,25 @@ align-self: stretch;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 93%;
+  height: 95%;
   gap: 8px;
   padding: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
   font-family: 'Lexend Exa', sans-serif;
   color: #fff;
 
   /* Glassmorphism */
   border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.07) 0%,
-    rgba(255, 255, 255, 0.02) 100%
-  );
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.4),
-    0 1px 0 rgba(255, 255, 255, 0.06) inset,
-    0 -1px 0 rgba(0, 0, 0, 0.3) inset;
+  border: 2px solid #2C2A32;
+
+background: linear-gradient(0deg, #1D1C1C -51.88%, #2C2A32 100%);
+
+
+
+box-shadow: 0 4px 12px 0 rgba(13, 10, 44, 0.06);
+
+
 }
 /* Profile */
 .profile {

@@ -1,0 +1,28 @@
+.secttl{
+font-family: "Lexend Exa";
+font-size: var(--font-xlarge);
+font-style: normal;
+font-weight: 700;
+width: 95%;
+text-align: left;
+color: rgb(255, 255, 255)
+}
+
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100;300;400;500;600;700&display=swap');
+
+p {
+  margin: 0;
+  font-family: 'Lexend Exa', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: 'Lexend Exa', sans-serif;
+}
+:root {
+
+  --font-small: 0.75rem;   /* 12px */
+  --font-medium: 0.875rem; /* 14px */
+  --font-large: 1rem;      /* 16px */
+  --font-xlarge: 2rem;     /* 32px */
+}
