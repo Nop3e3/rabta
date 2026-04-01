@@ -60,3 +60,69 @@ background: linear-gradient(0deg, #141414 -51.88%, #2C2A32 100%);
 /* SHADOW */
 box-shadow: 0 7px 13.1px 6px rgba(30, 30, 30, 0.13);
 }
+
+
+
+/* ── Dashboard = Card Animation Clone ── */
+.quickaction {
+  position: relative;
+  overflow: hidden;
+
+  /* same entrance animation */
+  opacity: 0;
+  animation: card-in 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  /* same transition feel */
+  transition:
+    box-shadow 0.35s ease,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* border layer */
+.quickaction::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.06); /* fallback for var(--card-border) */
+  pointer-events: none;
+  transition: border-color 0.4s ease;
+  z-index: 1;
+}
+
+/* top accent line */
+.quickaction::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(182, 212, 62, 0.8),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+}
+
+/* hover EXACT match */
+.quickaction:hover {
+  box-shadow:
+    0 0 0 1px rgba(182, 212, 62, 0.13),
+    0 24px 64px rgba(0, 0, 0, 0.6),
+    0 4px 20px rgba(182, 212, 62, 0.07);
+
+  transform: translateY(-3px);
+}
+
+.quickaction:hover::before {
+  border-color: rgba(182, 212, 62, 0.18);
+}
+
+.quickaction:hover::after {
+  opacity: 1;
+}

@@ -1,0 +1,609 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@300;400;500;600;700;800&display=swap');
+
+/* ─── RESET & BASE ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  
+  --card-bg:    linear-gradient(0deg, #141414 -51.88%, #2C2A32 100%);
+
+;
+  --card-border:   rgba(255, 255, 255, 0.055);
+  --accent:        #EDFE8E;
+  --accent-dim:    #FBF856;
+  --accent-deep:   #6b6a23;
+  --text-primary:  #ffffff;
+  --text-muted:    #868686;
+  --text-faint:    #3e3e3e;
+  --track-bg:      #2b2b2b;
+  --tick-inactive: #333333;
+  --tick-active:   #FBF856;
+  --font:          'Lexend Exa', sans-serif;
+  --radius-card:   22px;
+  --radius-pill:   999px;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ─── PAGE WRAPPER ──────────────────────────────────────────── */
+.page-wrapper {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* ─── CARD ──────────────────────────────────────────────────── */
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(32px) scale(0.97);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  padding: 30px 34px 38px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: card-in 0.75s var(--ease-out-expo) forwards;
+  transition: box-shadow 0.35s ease, transform 0.35s var(--ease-out-expo);
+}
+
+.card:nth-child(1) { animation-delay: 0.05s; }
+.card:nth-child(2) { animation-delay: 0.25s; }
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--card-border);
+  pointer-events: none;
+  transition: border-color 0.4s ease;
+  z-index: 1;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 12%; right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent) 50%, transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+}
+
+.card:hover {
+  box-shadow:
+    0 0 0 1px rgba(182, 212, 62, 0.13),
+    0 24px 64px rgba(0, 0, 0, 0.6),
+    0 4px 20px rgba(182, 212, 62, 0.07);
+  transform: translateY(-3px);
+}
+
+.card:hover::before { border-color: rgba(182, 212, 62, 0.18); }
+.card:hover::after  { opacity: 1; }
+
+/* ─── HEADER ────────────────────────────────────────────────── */
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 3;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 70%;
+}
+
+@keyframes text-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card-title {
+  font-size: clamp(1.1rem, 2.8vw, 1.42rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  opacity: 0;
+  animation: text-up 0.6s var(--ease-out-expo) forwards;
+}
+
+.card:nth-child(1) .card-title { animation-delay: 0.22s; }
+.card:nth-child(2) .card-title { animation-delay: 0.42s; }
+
+.card-subtitle {
+  font-size: clamp(0.6rem, 1.25vw, 0.7rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: text-up 0.6s var(--ease-out-expo) forwards;
+}
+
+.card:nth-child(1) .card-subtitle { animation-delay: 0.3s; }
+.card:nth-child(2) .card-subtitle { animation-delay: 0.5s; }
+
+/* ─── TAGS ──────────────────────────────────────────────────── */
+.card-tags {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: text-up 0.6s var(--ease-out-expo) forwards;
+}
+
+.card:nth-child(1) .card-tags { animation-delay: 0.38s; }
+.card:nth-child(2) .card-tags { animation-delay: 0.58s; }
+
+.tag-text {
+  font-size: clamp(0.56rem, 1.05vw, 0.64rem);
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.tag-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #484848;
+  flex-shrink: 0;
+  display: inline-block;
+  margin: 0 2px;
+  vertical-align: middle;
+}
+
+/* ─── STATUS BADGE ──────────────────────────────────────────── */
+@keyframes badge-pop {
+  0%   { transform: scale(0.65); opacity: 0; }
+  65%  { transform: scale(1.1);  opacity: 1; }
+  100% { transform: scale(1);    opacity: 1; }
+}
+
+@keyframes badge-pulse {
+  0%, 100% { box-shadow: 0 0 0 0   rgba(182, 212, 62, 0); }
+  50%       { box-shadow: 0 0 0 5px rgba(182, 212, 62, 0.13); }
+}
+
+@keyframes badge-shimmer {
+  0%        { left: -100%; }
+  40%, 100% { left:  150%; }
+}
+
+.status-badge {
+  font-size: clamp(0.53rem, 1vw, 0.62rem);
+  font-weight: 500;
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  opacity: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.status-badge::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; bottom: 0;
+  width: 55%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  animation: badge-shimmer 3.6s ease-in-out 1.8s infinite;
+}
+
+.status-transit {
+  color: #B6F193;
+  border-color: var(--accent);
+  animation:
+    badge-pop   0.5s var(--ease-spring) 0.52s forwards,
+    badge-pulse 3s   ease-in-out        1.5s  infinite;
+    display: flex;
+padding: 4px 12px;
+align-items: center;
+color: #B6F193;
+background: rgba(182, 241, 147, 0.05);
+
+gap: 8px;
+}
+
+.status-negotiation {
+  color: #c8df52;
+  border-color: #c8df52;
+  animation:
+    badge-pop   0.5s var(--ease-spring) 0.72s forwards,
+    badge-pulse 3s   ease-in-out        1.7s  infinite;
+    display: flex;
+padding: 4px 12px;
+align-items: center;
+gap: 8px;
+border-radius: 32px;
+background: rgba(237, 254, 142, 0.05);
+  animation:
+    badge-pop   0.5s var(--ease-spring) 0.72s forwards,
+    badge-pulse 3s   ease-in-out        1.7s  infinite;
+}
+
+
+/* ─── CTA BUTTON ────────────────────────────────────────────── */
+@keyframes btn-slide-in {
+  from { opacity: 0; transform: translateX(18px) scale(0.94); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes btn-shimmer {
+  from { left: -80%; }
+  to   { left: 140%; }
+}
+
+.cta-btn {
+  font-family: var(--font);
+  font-size: clamp(0.56rem, 1.05vw, 0.64rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+  background: linear-gradient(150deg, #607a1a 0%, #3e5010 55%, #2c3e0a 100%);
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 15px 28px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: btn-slide-in 0.55s var(--ease-out-expo) forwards;
+  box-shadow:
+    0 5px 24px rgba(90, 110, 26, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  transition:
+    transform  0.22s var(--ease-spring),
+    box-shadow 0.22s ease,
+    opacity    0.2s  ease;
+}
+
+.card:nth-child(1) .cta-btn { animation-delay: 0.44s; }
+.card:nth-child(2) .cta-btn { animation-delay: 0.64s; }
+
+.cta-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -80%; bottom: 0;
+  width: 50%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent);
+  transform: skewX(-12deg);
+  pointer-events: none;
+}
+
+.cta-btn:hover::before { animation: btn-shimmer 0.52s ease forwards; }
+
+.cta-btn:hover {
+  transform: translateY(-2px) scale(1.025);
+  box-shadow:
+    0 12px 38px rgba(100, 135, 26, 0.58),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.cta-btn:active {
+  transform: translateY(0) scale(0.975);
+  box-shadow:
+    0 3px 14px rgba(90, 110, 26, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* ─── PROGRESS SECTION ──────────────────────────────────────── */
+.progress-section {
+  margin-top: 36px;
+  opacity: 0;
+  width: 100%;
+  animation: text-up 0.65s var(--ease-out-expo) forwards;
+  position: relative;
+  z-index: 3;
+}
+
+.card:nth-child(1) .progress-section { animation-delay: 0.58s; }
+.card:nth-child(2) .progress-section { animation-delay: 0.78s; }
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 13px;
+  position: relative;
+}
+
+.progress-label {
+  font-size: clamp(0.56rem, 1.05vw, 0.64rem);
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.progress-label.faint  { color: var(--text-faint); }
+
+.progress-label.center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ─── TRACK OUTER — holds indicator + bar ───────────────────── */
+.track-outer {
+  position: relative;
+  /* top padding = indicator box height (≈26px) + arrow (10px) + gap (4px) */
+  padding-top: 50px;
+}
+
+/* ─── CURRENT POINT INDICATOR ───────────────────────────────── */
+/*
+  Positioned absolutely inside .track-outer.
+  Left is set to --fill-pos (the fill percentage).
+  translateX(-50%) centres the whole indicator on that point.
+  It slides in after the bar fill animation completes.
+*/
+
+@keyframes indicator-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.current-indicator {
+  position: absolute;
+  top: 0;
+  left: var(--fill-pos);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  animation: indicator-in 0.55s var(--ease-spring) forwards;
+  pointer-events: none;
+  /* delay until after bar has grown */
+  z-index: 10;
+}
+
+.card:nth-child(1) .current-indicator { animation-delay: 2.1s; }
+.card:nth-child(2) .current-indicator { animation-delay: 2.3s; }
+
+/* ── label box ── */
+.current-box {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(26, 26, 26, 0.92);
+  border: 1.5px solid var(--accent);
+  border-radius: 8px;
+  padding: 6px 12px;
+  white-space: nowrap;
+  box-shadow:
+    0 0 0 1px rgba(182, 212, 62, 0.08),
+    0 6px 24px rgba(0, 0, 0, 0.55),
+    0 0 18px rgba(182, 212, 62, 0.18);
+  backdrop-filter: blur(6px);
+  position: relative;
+}
+
+/* pulsing border glow on the box */
+@keyframes box-glow {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(182,212,62,0.08), 0 6px 24px rgba(0,0,0,0.55), 0 0 10px rgba(182,212,62,0.15); }
+  50%       { box-shadow: 0 0 0 1px rgba(182,212,62,0.2),  0 6px 24px rgba(0,0,0,0.55), 0 0 28px rgba(182,212,62,0.4); }
+}
+
+.current-box {
+  animation: box-glow 2.4s ease-in-out 2.8s infinite;
+}
+
+/* live dot inside box */
+@keyframes live-blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.3; transform: scale(0.7); }
+}
+
+.current-dot-live {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  box-shadow: 0 0 6px rgba(212, 204, 62, 0.8);
+  animation: live-blink 1.4s ease-in-out 3s infinite;
+}
+
+.current-label-text {
+  font-family: var(--font);
+  font-size: clamp(0.52rem, 0.95vw, 0.6rem);
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+/* ── arrow stem (thin vertical line) ── */
+.current-arrow {
+  width: 1.5px;
+  height: 10px;
+  background: linear-gradient(to bottom, var(--accent), rgba(212, 209, 62, 0.3));
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* arrowhead pointing DOWN */
+.current-arrow::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left:  4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top:   5px solid rgba(209, 212, 62, 0.55);
+}
+
+/* ─── TRACK BAR ─────────────────────────────────────────────── */
+.track-bg {
+  width: 100%;
+  height: 3px;
+  background: var(--track-bg);
+  border-radius: var(--radius-pill);
+  position: relative;
+}
+
+@keyframes fill-grow {
+  from { width: 0%;                 opacity: 0.6; }
+  to   { width: var(--fill-target); opacity: 1;   }
+}
+
+.track-fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(180deg, rgba(237, 254, 142, 0.60) 0%, rgba(86, 94, 36, 0.60) 100%);
+  position: absolute;
+  left: 0; top: 0;
+  width: 0%;
+  box-shadow: 0 0 10px rgba(189, 194, 50, 0.5);
+  animation: fill-grow 1.2s var(--ease-out-expo) forwards;
+}
+
+.card:nth-child(1) .track-fill { animation-delay: 0.8s; }
+.card:nth-child(2) .track-fill { animation-delay: 1.0s; }
+
+/* glowing tip dot */
+@keyframes tip-pulse {
+  0%, 100% { box-shadow: 0 0 8px  2px rgba(184, 216, 74, 0.45); }
+  50%       { box-shadow: 0 0 20px 5px rgba(216, 209, 74, 0.75); }
+}
+
+.track-fill::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgb(237, 254, 142);
+  animation: tip-pulse 2.2s ease-in-out 2s infinite;
+}
+
+/* ─── TICK MARKS ────────────────────────────────────────────── */
+@keyframes tick-grow {
+  from { transform: translate(-50%, -50%) scaleY(0); opacity: 0; }
+  to   { transform: translate(-50%, -50%) scaleY(1); opacity: 1; }
+}
+
+.tick {
+  position: absolute;
+  top: 50%;
+  width: 2px;
+  height: 11px;
+  border-radius: 1px;
+  background: var(--tick-inactive);
+  transform: translate(-50%, -50%) scaleY(0);
+  animation: tick-grow 0.38s var(--ease-spring) forwards;
+}
+
+.tick.active {
+  background: var(--tick-active);
+  box-shadow: 0 0 6px rgba(152, 158, 40, 0.55);
+}
+
+.tick-0   { left: 0%;   }
+.tick-50  { left: 50%;  }
+.tick-100 { left: 100%; }
+
+.card:nth-child(1) .tick.tick-0   { animation-delay: 0.82s; }
+.card:nth-child(1) .tick.tick-50  { animation-delay: 0.93s; }
+.card:nth-child(1) .tick.tick-100 { animation-delay: 1.04s; }
+
+.card:nth-child(2) .tick.tick-0   { animation-delay: 1.02s; }
+.card:nth-child(2) .tick.tick-50  { animation-delay: 1.13s; }
+.card:nth-child(2) .tick.tick-100 { animation-delay: 1.24s; }
+
+/* ─── RESPONSIVE ────────────────────────────────────────────── */
+@media (max-width: 560px) {
+  .card {
+    padding: 22px 20px 30px;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cta-btn {
+
+    text-align: center;
+    padding: 14px 20px;
+  }
+
+  .progress-label.center {
+    position: static;
+    transform: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .card-tags { gap: 6px; }
+  .card { padding: 18px 14px 24px; }
+}
+.progress-section {
+  margin-top: 36px;
+  opacity: 0;
+  width: 100%;
+  animation: text-up 0.65s var(--ease-out-expo) forwards;
+  position: relative;
+  z-index: 3;
+}
+.card-header{
+
+display: flex;
+padding: 20px 27px;
+justify-content: space-between;
+align-items: flex-end;
+align-self: stretch;
+flex-wrap: nowrap;
+flex-direction: row;
+width: 100%;
+border-radius: 17px;
+background: #1E1E1E;
+}

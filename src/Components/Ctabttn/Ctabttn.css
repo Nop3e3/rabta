@@ -1,0 +1,18 @@
+.Ctabttnn{
+    border-radius: 32px;
+border: 1px solid #F5FFC1;
+display: flex;
+padding: 12px 40px;
+align-items: center;
+gap: 16px;
+color: #FFF;
+
+text-align: center;
+font-family: "Lexend Exa";
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 150% */
+letter-spacing: -0.032px;
+background: var(--yellow, linear-gradient(180deg, rgba(237, 254, 142, 0.60) 0%, rgba(86, 94, 36, 0.60) 100%), rgba(0, 0, 0, 0.20));
+}

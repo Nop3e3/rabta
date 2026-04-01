@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@300;400;500;600;700;800&display=swap');
+ 
+/* ─── Page wrapper ─────────────────────────────────────── */
+.bmc-wrapper {
+  font-family: 'Lexend Exa', sans-serif;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+ 
+/* ─── Card shell ────────────────────────────────────────── */
+.bmc-card {
+  position: relative;
+  width: 340px;
+  height: 620px;
+  border-radius: 26px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s ease;
+}
+ 
+.bmc-card--hovered {
+  transform: scale(1.025) translateY(-4px);
+  box-shadow: 0 44px 100px rgba(0, 0, 0, 0.85);
+}
+ 
+/* ─── Background image ──────────────────────────────────── */
+.bmc-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80');
+  background-size: cover;
+  background-position: center top;
+  transition: transform 0.5s ease;
+}
+ 
+.bmc-bg--hovered {
+  transform: scale(1.04);
+}
+ 
+/* ─── Gradient overlay ──────────────────────────────────── */
+.bmc-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.05)  0%,
+    rgba(0, 0, 0, 0.08) 30%,
+    rgba(0, 0, 0, 0.55) 52%,
+    rgba(0, 0, 0, 0.88) 68%,
+    rgba(0, 0, 0, 0.97) 100%
+  );
+}
+ 
+/* ─── Enroll button ─────────────────────────────────────── */
+.bmc-enroll {
+  position: absolute;
+  top: 20px;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(116, 138, 70, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(170, 205, 95, 0.4);
+  border-radius: 50px;
+  padding: 8px 14px 8px 22px;
+  font-family: 'Lexend Exa', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.01em;
+  z-index: 10;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+ 
+.bmc-enroll:hover {
+  background: rgba(140, 165, 85, 0.98);
+}
+ 
+.bmc-enroll-icon {
+  width: 38px;
+  height: 38px;
+  background: #1c1c1c;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+ 
+/* ─── Bottom content block ──────────────────────────────── */
+.bmc-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0 24px 28px;
+  z-index: 10;
+}
+ 
+/* ─── Title ─────────────────────────────────────────────── */
+.bmc-title {
+  font-family: 'Lexend Exa', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0 0 12px;
+}
+ 
+/* ─── Stars + Easy row ──────────────────────────────────── */
+.bmc-rating-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+ 
+.bmc-stars {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+ 
+.bmc-easy-badge {
+  border: 1.5px solid rgba(130, 195, 80, 0.85);
+  border-radius: 50px;
+  padding: 5px 16px;
+  font-family: 'Lexend Exa', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(155, 220, 95, 1);
+  letter-spacing: 0.02em;
+  background: rgba(80, 120, 40, 0.12);
+}
+ 
+/* ─── Divider ───────────────────────────────────────────── */
+.bmc-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  margin-bottom: 16px;
+}
+ 
+/* ─── Footer row ────────────────────────────────────────── */
+.bmc-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+ 
+.bmc-provider {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+ 
+.bmc-provider-name-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+ 
+.bmc-google-wrap {
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  flex-shrink: 0;
+}
+ 
+.bmc-provider-name {
+  font-family: 'Lexend Exa', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+}
+ 
+.bmc-lessons {
+  font-family: 'Lexend Exa', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.01em;
+}
+ 
+/* ─── Booked ────────────────────────────────────────────── */
+.bmc-booked {
+  text-align: right;
+}
+ 
+.bmc-booked-pct {
+  font-family: 'Lexend Exa', sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+ 
+.bmc-booked-label {
+  font-family: 'Lexend Exa', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}

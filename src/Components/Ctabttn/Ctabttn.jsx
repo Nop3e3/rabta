@@ -1,13 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./SidebarComp.css";
+import "./Ctabttn.css";
 
-const SidebarComp = ({ text, icon, path }) => {
+const SidebarComp = ({ text, icon, path,image }) => {
   const navigate = useNavigate();
   return (
-    <button className="SidebarComp" onClick={() => navigate(path)}>
-      <img className="icon" src={icon} alt={text} />
+    <button className="Ctabttnn" onClick={() => navigate(path)}>
+
       <p className="btn-text">{text}</p>
+   
     </button>
   );
 };

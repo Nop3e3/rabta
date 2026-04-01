@@ -26,6 +26,8 @@ font-style: normal;
 font-weight: 400;
 line-height: 16px; /* 100% */
 stroke: none;
+padding-top: 4px;
+padding-bottom: 4px;
 border: 0px none;
 display: flex;
 align-items: center;
@@ -36,4 +38,42 @@ gap: 10px;
     height: 16px;
     object-fit: contain;
     aspect-ratio: 1/1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* SidebarComp base */
+.SidebarComp {
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Hover effect */
+.SidebarComp:hover {
+  transform: scale(1.05); /* subtle zoom */
+
+}
+
+/* Icon scale slightly on hover without affecting layout */
+.SidebarComp:hover .icon {
+  transform: scale(1.2);
+  transition: transform 0.2s ease;
+}
+
+/* Icon base */
+.icon {
+  height: 16px;
+  width: 16px; /* enforce fixed size */
+  object-fit: contain;
+  transition: transform 0.2s ease; /* smooth hover */
 }
