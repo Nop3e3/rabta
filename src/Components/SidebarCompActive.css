@@ -29,7 +29,7 @@ stroke: none;
 
 border: 0px none;
 border-radius: 8px;
-border: 1px solid #f5ffc12b;
+border: 1px solid #F5FFC1;
 background: linear-gradient(180deg, rgba(237, 254, 142, 0.60) 0%, rgba(86, 94, 36, 0.60) 100%);
 display: flex;
 align-items: center;
@@ -45,4 +45,7 @@ align-self: stretch;
 .icon{
     height: 20px;
     aspect-ratio: 1/1;
+}
+.btntexttt{
+  width: fit-content;
 }

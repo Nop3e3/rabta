@@ -1,0 +1,339 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@300;400;500;600;700&display=swap');
+ 
+/* ── Root variables ── */
+:root {
+  --cc-bg-page:        #1a1a1a;
+  --cc-bg-card:        #1e2022;
+  --cc-border:         #2e3033;
+  --cc-border-tag:     #3e4248;
+  --cc-text-primary:   #ffffff;
+  --cc-text-muted:     #8a8f96;
+  --cc-text-faint:     #7a7f86;
+  --cc-text-tag:       #d0d4d9;
+  --cc-accent-badge:   #b8c832;
+  --cc-star:           #f5c518;
+  --cc-btn-know-bg:    #2a2d30;
+  --cc-btn-book-bg:    #5a6628;
+  --cc-btn-book-text:  #e8f0a0;
+  --cc-avatar-grad:    linear-gradient(135deg, #5a4a3a 0%, #8a7060 50%, #c4a882 100%);
+  --cc-font:           'Lexend Exa', sans-serif;
+  --cc-radius-card:    18px;
+  --cc-radius-pill:    999px;
+}
+ .cc-wrapper {
+ width: 100%;}
+
+/* ── Card ── */
+.cc-card {
+display: flex;
+padding: 16px 16.8px;
+flex-direction: column;
+align-items: flex-start;
+gap: 12px;
+align-self: stretch;
+border-radius: 16px;
+border: 2px solid #2C2A32;
+
+background: linear-gradient(0deg, #141414 -51.88%, #2C2A32 100%);
+
+/* SHADOW */
+box-shadow: 0 7px 13.1px 6px rgba(30, 30, 30, 0.13);
+}
+.cc-card {
+  position: relative;
+  overflow: hidden;
+
+  /* same entrance animation */
+  opacity: 0;
+  animation: card-in 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  /* same transition feel */
+  transition:
+    box-shadow 0.35s ease,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* border layer */
+.cc-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.06); /* fallback for var(--card-border) */
+  pointer-events: none;
+  transition: border-color 0.4s ease;
+  z-index: 1;
+}
+
+/* top accent line */
+.cc-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(182, 212, 62, 0.8),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+}
+
+/* hover EXACT match */
+.cc-card:hover {
+  box-shadow:
+    0 0 0 1px rgba(182, 212, 62, 0.13),
+    0 24px 64px rgba(0, 0, 0, 0.6),
+    0 4px 20px rgba(182, 212, 62, 0.07);
+
+  transform: translateY(-3px);
+}
+
+.cc-card:hover::before {
+  border-color: rgba(182, 212, 62, 0.18);
+}
+
+.cc-card:hover::after {
+  opacity: 1;
+}
+.cc-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  
+}
+.contop{
+    display: flex;
+padding: 21px 17px;
+flex-direction: column;
+align-items: flex-start;
+gap: 22px;
+align-self: stretch;
+
+border-radius: 11px;
+background: #1E1E1E;
+}
+ 
+/* ── Avatar ── */
+.cc-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--cc-avatar-grad);
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+ 
+.cc-avatar::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 42px;
+  height: 52px;
+  background: #6a5040;
+  border-radius: 50% 50% 0 0 / 60% 60% 0 0;
+}
+ 
+.cc-avatar::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26px;
+  height: 26px;
+  background: #c4a882;
+  border-radius: 50%;
+}
+ 
+/* ── Info block ── */
+.cc-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+ 
+.cc-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+ 
+.cc-name {
+  font-family: var(--cc-font);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--cc-text-primary);
+  letter-spacing: -0.3px;
+}
+ 
+.cc-title {
+  font-family: var(--cc-font);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--cc-text-muted);
+  letter-spacing: 0.2px;
+}
+ 
+/* ── Stats row ── */
+.cc-stats-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+ 
+.cc-sessions,
+.cc-reviews {
+  font-family: var(--cc-font);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--cc-text-muted);
+}
+ 
+.cc-dot {
+  color: var(--cc-text-muted);
+  font-size: 13px;
+}
+ 
+.cc-stars {
+  display: flex;
+  gap: 2px;
+  margin-left: 2px;
+}
+ 
+.cc-star {
+  color: var(--cc-star);
+  font-size: 16px;
+  line-height: 1;
+}
+ 
+/* ── Tags ── */
+.cc-tags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+ 
+.cc-tag {
+
+display: flex;
+padding: 8px 21px;
+align-items: center;
+gap: 8px;
+color: #FFF;
+
+font-family: "Lexend Exa";
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+border-color: rgba(245, 255, 206, 0.18); 
+line-height: 16px; /* 133.333% */
+border-radius: 32px;
+background: rgba(255, 255, 255, 0.06);
+}
+ 
+/* ── Bottom section ── */
+.cc-bottom {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+ 
+.cc-meta {
+  font-family: var(--cc-font);
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--cc-text-faint);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.1px;
+}
+ 
+/* ── Action buttons ── */
+.cc-actions {
+  display: flex;
+  gap: 12px;
+
+  align-items: center;
+}
+ 
+.cc-btn-know,
+.cc-btn-book {
+  font-family: var(--cc-font);
+  font-size: 13px;
+  border-radius: var(--cc-radius-pill);
+  cursor: pointer;
+  letter-spacing: 0.1px;
+  transition: background 0.2s, border-color 0.2s, opacity 0.2s;
+}
+ 
+.cc-btn-know {
+  font-weight: 400;
+  color: var(--cc-text-tag);
+  background: var(--cc-btn-know-bg);
+  border: 1px solid var(--cc-border-tag);
+  padding: 11px 28px;
+}
+ 
+.cc-btn-know:hover {
+  background: #333639;
+  border-color: #5a6060;
+}
+ 
+.cc-btn-book {
+  font-weight: 500;
+  color: var(--cc-btn-book-text);
+  background: var(--cc-btn-book-bg);
+  border: none;
+  padding: 12px 28px;
+}
+ 
+.cc-btn-book:hover {
+  background: #6a7830;
+}
+ 
+/* Verification badge */
+.cc-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--cc-font);
+  font-size: 11px;
+  font-weight: 500;
+
+  border-radius: var(--cc-radius-pill);
+  padding: 3px;
+}
+
+.cc-verified-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #2a7a4b;
+  flex-shrink: 0;
+}
+
+/* Text rating pill */
+.cc-rating-text {
+  font-family: var(--cc-font);
+  font-size: 13px;
+  font-weight: 500;
+  color: #ffffff;
+color: #FDF74E;
+  border-radius: var(--cc-radius-pill);
+  padding: 2px 10px;
+  letter-spacing: 0.2px;
+}

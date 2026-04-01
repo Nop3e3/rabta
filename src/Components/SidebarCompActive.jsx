@@ -7,7 +7,7 @@ const SidebarCompActive = ({ text, icon, path }) => {
   return (
     <button className="SidebarCompActive" onClick={() => navigate(path)}>
       <img className="icon" src={icon} alt={text} />
-      <p className="btn-text">{text}</p>
+      <p className="btn-texttt">{text}</p>
     </button>
   );
 };
