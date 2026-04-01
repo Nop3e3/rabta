@@ -222,7 +222,7 @@
 
 .status-transit {
   color: #B6F193;
-  border-color: var(--accent);
+  border-color: #B6F193;
   animation:
     badge-pop   0.5s var(--ease-spring) 0.52s forwards,
     badge-pulse 3s   ease-in-out        1.5s  infinite;

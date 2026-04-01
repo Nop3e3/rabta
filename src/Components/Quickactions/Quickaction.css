@@ -126,3 +126,12 @@ box-shadow: 0 7px 13.1px 6px rgba(30, 30, 30, 0.13);
 .quickaction:hover::after {
   opacity: 1;
 }
+
+
+.theettls{
+  display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 8.686px;
+align-self: stretch;
+}

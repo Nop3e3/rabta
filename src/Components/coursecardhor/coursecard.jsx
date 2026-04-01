@@ -1,21 +1,6 @@
 import { useState } from "react";
 import "./coursecard.css";
-
-/* ── Icons ── */
-
-function ArrowIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M5 12h14M13 5l7 7-7 7"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
+import Arrow from "../../Assets/arrow_outward.svg"
 
 function StarIcon({ filled }) {
   return (
@@ -29,8 +14,6 @@ function StarIcon({ filled }) {
     </svg>
   );
 }
-
-/* ── Component ── */
 
 export default function CourseCard({
   title,
@@ -56,19 +39,19 @@ export default function CourseCard({
         {/* Background */}
         <div
           className={`bmc-bg ${hovered ? "bmc-bg--hovered" : ""}`}
-          style={{
-            backgroundImage: `url(${image})`,
-          }}
+          style={{ backgroundImage: `url(${image})` }}
         />
 
         {/* Overlay */}
         <div className="bmc-overlay" />
 
         {/* Button */}
-        <div className="bmc-enroll">
-          {buttonText}
-          <div className="bmc-enroll-icon">
-            <ArrowIcon />
+        <div className="bmc_con">
+          <div className="bmc-enroll">
+            {buttonText}
+            <div className="bmc-enroll-icon">
+              <img src={Arrow} alt="" />
+            </div>
           </div>
         </div>
 
@@ -83,8 +66,11 @@ export default function CourseCard({
                 <StarIcon key={i} filled={i < rating} />
               ))}
             </div>
-            <span className="bmc-easy-badge">{difficulty}</span>
-            
+
+            {/* ✅ Dynamic difficulty badge */}
+            <span className={`bmc-easy-badge bmc-difficulty--${difficulty?.toLowerCase()}`}>
+              {difficulty}
+            </span>
           </div>
 
           <div className="bmc-divider" />
@@ -94,15 +80,10 @@ export default function CourseCard({
             <div className="bmc-provider">
               <div className="bmc-provider-name-row">
                 <div className="bmc-google-wrap">
-                  <img
-                    className="icon"
-                    src={providerLogo}
-                    alt={provider}
-                  />
+                  <img className="icon" src={providerLogo} alt={provider} />
                 </div>
                 <span className="bmc-provider-name">{provider}</span>
               </div>
-
               <span className="bmc-lessons">
                 {lessons} lessons • {duration} total
               </span>

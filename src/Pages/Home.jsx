@@ -17,7 +17,7 @@ export default function Home() {
 
   useEffect(() => {
     async function fetchData() {
-      // Profile
+      // Fetch Profile
       const { data: profileData, error: profileError } = await supabase
         .from("home screen eng")
         .select("greeting_text, name, pfp")
@@ -26,7 +26,7 @@ export default function Home() {
       if (profileError) console.error("Profile error:", profileError);
       else setProfile(profileData);
 
-      // Quick Actions (id 1 → 4)
+      // Fetch Quick Actions (IDs 1 → 4)
       const { data: qaData, error: qaError } = await supabase
         .from("home screen eng")
         .select("*")
@@ -35,9 +35,9 @@ export default function Home() {
       if (qaError) console.error("Quick Actions error:", qaError);
       else setQuickActions(qaData);
 
-      // Courses from learning hub
+      // Fetch Courses
       const { data: coursesData, error: coursesError } = await supabase
-        .from("learning hub")
+        .from("learning_hub")
         .select("*");
       if (coursesError) console.error("Courses error:", coursesError);
       else setCourses(coursesData);
@@ -59,10 +59,7 @@ export default function Home() {
         <Profiletopbar image={profile.pfp} />
 
         {/* Welcome */}
-        <Welcomesec
-          text={profile.greeting_text}
-          name={profile.name}
-        />
+        <Welcomesec text={profile.greeting_text} name={profile.name} />
 
         {/* Quick Actions */}
         <div className="secsh">
@@ -82,29 +79,30 @@ export default function Home() {
 
         {/* Stats */}
         <div className="secsh">
-          <Secttl text="How’s your Business Lately" />
+          <Secttl text="How's your Business Lately" />
           <Statscomp />
         </div>
 
         {/* Operations */}
         <Operations />
 
-        {/* Courses dynamically from Supabase */}
+        {/* Courses */}
         <div className="secsh">
           <Secttl text="Recommended Courses" />
           <div className="courses-grid">
             {courses.map((course) => (
               <Coursecard
-                key={course.id}
-                title={course.Recommended_course_name1}
-                provider={course.provider_name}
-                lessons={course.modules}
-                duration={course.time}
-                rating={course.course_rate_number1 || 0}
-                difficulty={course.course_level1}
-                bookedPercent={course.booking_percent || 0}
-                image={course.module_cover_image}
-                providerLogo={""} // You can add a provider logo column if needed
+                key={course["Course Name"]}
+                title={course["Course Name"]}
+                provider={course["Provider"]}
+                lessons={course["Path"]}
+                duration={course["Duration"]}
+                // ✅ Fixed rating count
+                rating={course["Rating"] ? (course["Rating"].match(/★/g) || []).length : 0}
+                difficulty={course["Level"]}
+                bookedPercent={course["Success %"]}
+                image={course.image || ""}
+                providerLogo={course.provider_logo || ""}
                 buttonText="Enroll"
               />
             ))}
