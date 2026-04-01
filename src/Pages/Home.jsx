@@ -4,12 +4,14 @@ import Coursecard from "../Components/coursecardhor/coursecard";
 import Profiletopbar from "../Components/Searchbar/Topbar.jsx";
 import Secttl from "../Components/Sectionttl/Sectionttl.jsx";
 import Sidebar from "../Components/SidebarHome.jsx";
+import Coursessec from "../Components/Coursecards_comp/Coursecards_comp.jsx";
+
 import Quickaction from "../Components/Quickactions/Quickaction.jsx";
 import Welcomesec from "../Components/Welcomesec/Welcomsec.jsx";
 import { supabase } from "../Supabase";
 import Operations from "../Components/Operations/Operations.jsx";
 import Statscomp from "../Components/Statscomp/Statscomp.jsx";
-
+import Viewallbttn from "../Components/Viewallbttn/Viewallbttn.jsx";
 export default function Home() {
   const [profile, setProfile] = useState(null);
   const [quickActions, setQuickActions] = useState([]);
@@ -64,6 +66,8 @@ export default function Home() {
         {/* Quick Actions */}
         <div className="secsh">
           <Secttl text="Quick Actions" />
+
+      
           <div className="qa-grid">
             {quickActions.map((item) => (
               <Quickaction
@@ -82,33 +86,40 @@ export default function Home() {
           <Secttl text="How's your Business Lately" />
           <Statscomp />
         </div>
-
-        {/* Operations */}
-        <Operations />
+<div className="secsh">
+      <div className="ttlcon"><Secttl text="Active Operations" />
+              <Viewallbttn text="View All"  /></div>
+        <Operations /></div>
 
         {/* Courses */}
         <div className="secsh">
-          <Secttl text="Recommended Courses" />
-          <div className="courses-grid">
-            {courses.map((course) => (
-              <Coursecard
-                key={course["Course Name"]}
-                title={course["Course Name"]}
-                provider={course["Provider"]}
-                lessons={course["Path"]}
-                duration={course["Duration"]}
-                // ✅ Fixed rating count
-                rating={course["Rating"] ? (course["Rating"].match(/★/g) || []).length : 0}
-                difficulty={course["Level"]}
-                bookedPercent={course["Success %"]}
-                image={course.image || ""}
-                providerLogo={course.provider_logo || ""}
-                buttonText="Enroll"
-              />
-            ))}
-          </div>
+         <div className="ttlcon"><Secttl text="Recommended Courses" />
+              <Viewallbttn text="View All"  /></div> 
+          <Coursessec />
         </div>
       </div>
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/* path="/quickactions" */}

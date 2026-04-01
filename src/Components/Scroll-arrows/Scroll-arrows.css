@@ -1,0 +1,60 @@
+.slider-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff1a; /* Dark background from image */
+  padding: 10px;
+  border-radius: 50px;
+  width: fit-content;
+  gap: 40px; /* Adjust spacing between arrows here */
+
+}
+
+.arrow-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  
+  /* Gradient and Shadow for the 3D effect */
+  background: linear-gradient(145deg, #858585, #949494);
+
+  outline: none;
+}
+
+.arrow-button:active {
+  background: #ffffff55;
+  box-shadow: inset 2px 2px 5px #111;
+  transform: scale(0.98);
+}
+
+/* Custom CSS Chevrons */
+.chevron {
+  display: inline-block;
+  border-right: 4px solid #888; /* Dimmer color for left */
+  border-bottom: 4px solid #888;
+  width: 15px;
+  height: 15px;
+}
+
+.next .chevron {
+  border-color: #ffffff; /* Brighter color for right arrow as seen in image */
+  transform: rotate(-45deg);
+  margin-right: 4px;
+}
+
+.prev .chevron {
+  transform: rotate(135deg);
+    border-color: #ffffffaa;
+  margin-left: 4px;
+}
+
+/* Hover effects */
+.arrow-button:hover .chevron {
+  border-color: #fff;
+}

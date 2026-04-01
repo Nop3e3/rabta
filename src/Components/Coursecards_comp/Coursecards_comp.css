@@ -1,0 +1,51 @@
+.coursessec {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.courses-scroll-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.courses-grid {
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: visible;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* hide scrollbar Firefox */
+  -ms-overflow-style: none; /* hide scrollbar IE */
+}
+
+.courses-grid::-webkit-scrollbar {
+  display: none; /* hide scrollbar Chrome */
+}
+
+.scroll-arrow {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  backdrop-filter: blur(10px);
+}
+
+.scroll-arrow:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
