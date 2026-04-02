@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@300;400&display=swap');
+
+.empty-state-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh; /* mobile-safe fallback */
+  width: 100%;
+
+justify-content: center;
+align-items: center;
+
+border-radius: 16.4px;
+border: 1px solid #ffffff15;
+
+background:  linear-gradient(0deg, #141414 -51.88%, #2C2A32 100%);
+box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.10), 0 1px 2px -1px rgba(0, 0, 0, 0.10);
+  font-family: 'Lexend Exa', sans-serif;
+  color: #7a8292;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.icon-wrapper {
+  width: 64px;
+  margin-bottom: 24px;
+  color: #aeb6c7;
+}
+
+.empty-state-text {
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  opacity: 0.8;
+}

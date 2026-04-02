@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@400;700&display=swap');
+
+.stati-card {
+  background-color: #1a1a1a; /* Dark charcoal/black */
+  color: #ffffff;
+  font-family: 'Lexend Exa', sans-serif;
+  padding: 24px 32px;
+  border-radius: 12px;
+  display: inline-block;
+width: 100%;
+
+border-radius: 14px;
+background: var(--yellow-sections-background, linear-gradient(0deg, #141414 -51.88%, #2C2A32 100%));
+/* shaddddow */
+box-shadow: 0 8px 9.6px 0 rgba(0, 0, 0, 0.11);
+}
+
+.stati-label {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  color: #d1d1d1; /* Slightly muted white for the label */
+  letter-spacing: -0.5px;
+}
+
+.stati-value {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+}
