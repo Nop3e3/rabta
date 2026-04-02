@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@400;600&display=swap');
+
+
+
+
+
+
+
+/* hover state */
+.banner-container:hover {
+  box-shadow:
+    0 0 0 1px rgba(182, 212, 62, 0.13),
+    0 24px 64px rgba(0, 0, 0, 0.6),
+    0 4px 20px rgba(182, 212, 62, 0.07);
+  transform: translateY(-3px);
+}
+
+/* activate glow */
+.banner-container:hover::before { border-color: rgba(182, 212, 62, 0.18); }
+.abanner-container:hover::after  { opacity: 1; }
+
+
+
+/* ── Dashboard = Card Animation Clone ── */
+.banner-container {
+  position: relative;
+  overflow: hidden;
+
+  /* same entrance animation */
+  opacity: 0;
+  animation: card-in 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  /* same transition feel */
+  transition:
+    box-shadow 0.35s ease,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* border layer */
+.banner-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.06); /* fallback for var(--card-border) */
+  pointer-events: none;
+  transition: border-color 0.4s ease;
+  z-index: 1;
+}
+
+/* top accent line */
+.banner-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(182, 212, 62, 0.8),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+}
+
+/* hover EXACT match */
+.banner-container:hover {
+  box-shadow:
+    0 0 0 1px rgba(182, 212, 62, 0.13),
+    0 24px 64px rgba(0, 0, 0, 0.6),
+    0 4px 20px rgba(182, 212, 62, 0.07);
+
+  transform: translateY(-3px);
+}
+
+.banner-container:hover::before {
+  border-color: rgba(182, 212, 62, 0.18);
+}
+
+.dashbanner-containerboard:hover::after {
+  opacity: 1;
+}
+
+.banner-container {
+  width: 100%;
+  padding: 40px;
+
+  /* Simulating the vibrant blue/pattern background from your image */
+  background:url(../../Assets/Bg.png);
+  display: flex;
+  justify-content: center; 
+   background-size: 100%;
+   border-radius: 24px;
+
+  align-items: center;
+  font-family: 'Lexend Exa', sans-serif;
+}
+
+.banner-card {
+  background: rgba(0, 0, 0, 0.40);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px); /* Safari support */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 40px;
+  padding: 60px 40px;
+  width: 100%;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.06);
+
+  max-width: 1000px;
+  text-align: left;
+}
+
+.banner-title {
+  color: white;
+  font-size: 2.5rem;
+  margin: 0 0 15px 0;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.banner-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+.button-group {
+  display: flex;
+
+  gap: 20px;
+width: 100%;
+justify-content: space-between;
+display: flex;
+align-items: center;
+gap: 16px;
+justify-content: center;
+align-self: stretch;
+flex-direction: row;
+}
+
+.btn {
+  font-family: 'Lexend Exa', sans-serif;
+  height: 60px;
+  padding: 0 40px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 400;
+  cursor: pointer;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-primary {
+  background-color: white;
+  color: #1a1a1a;
+   padding: 12px 52px;
+    width: 100%;
+}
+
+.btn-primary:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+}
+
+.btn-glass {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+ padding: 12px 52px;
+ width: fit-content;
+ width: 100%;
+}
+
+.btn-glass:hover {
+     transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.chat-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+}

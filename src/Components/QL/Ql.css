@@ -1,0 +1,36 @@
+/* CardContainer.css */
+.card-containerrr {
+  background-color: #0f0f11; /* Deep charcoal/black */
+  border-radius: 40px;      /* Large organic rounding */
+  padding: 48px;
+  width: 100%;
+border-radius: 32px;
+background: rgba(0, 0, 0, 0.40);
+
+box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: 'Lexend Exa', sans-serif;
+  color: #ffffff;
+}
+
+.card-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 8px;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.card-description {
+  font-size: 18px;
+  color: #8a8a8e; /* Muted gray for the subtitle */
+  margin: 0;
+  font-weight: 400;
+}
