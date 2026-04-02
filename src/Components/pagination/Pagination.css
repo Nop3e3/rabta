@@ -1,0 +1,79 @@
+:root {
+  --accent-color: #f0ff91; 
+  --bg-dark: #262626;      
+  --text-white: #ffffff;
+}
+
+.pagination-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+display: flex;
+padding: 6.2px 13.95px;
+align-items: center;
+gap: 18.6px;
+
+border-radius: 96.1px;
+background: rgba(255, 255, 255, 0.05);
+  /* Applying Lexend Exa */
+  font-family: 'Lexend Exa', sans-serif;
+}
+
+.numbers-container {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-dark);
+  padding: 6px 20px; /* Wider padding for the capsule */
+  border-radius: 100px; 
+  gap: 25px; /* Increased gap to match the wide font-tracking */
+}
+
+.page-item, .nav-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-family: 'Lexend Exa', sans-serif;
+  transition: transform 0.1s ease;
+}
+
+.nav-btn, .page-item.active {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+.page-item {
+  color: var(--text-white);
+  padding: 0 5px;
+}
+
+.page-item.dots {
+  cursor: default;
+  margin-top: -8px; /* Optical alignment for the dots */
+  font-size: 1.5rem;
+}
+
+/* Custom SVG-style Chevrons for a cleaner look */
+.chevron {
+  border: solid #1a1a1a;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 5px;
+}
+
+.right { transform: rotate(-45deg); margin-right: 4px; }
+.left { transform: rotate(135deg); margin-left: 4px; }
+
+/* Subtle interaction */
+.page-item:not(.active, .dots):hover {
+  color: var(--accent-color);
+}
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@400;500;600&display=swap');

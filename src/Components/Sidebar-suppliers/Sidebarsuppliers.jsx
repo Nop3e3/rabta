@@ -100,15 +100,6 @@ export default function Sidebar() {
             />
           )}
 
-          {/* ACTIVE (ID 5) */}
-          {activeItem && (
-            <SidebarCompActive
-              key={activeItem.id}
-              text={activeItem.button_text}
-              icon={activeItem.ICON}
-              path={activeItem.path}
-            />
-          )}
 
           {/* IDs 3, 4, 6 */}
           {generalItems.map((item) => (
@@ -119,6 +110,15 @@ export default function Sidebar() {
               path={item.path}
             />
           ))}
+          {/* ACTIVE (ID 5) */}
+          {activeItem && (
+            <SidebarCompActive
+              key={activeItem.id}
+              text={activeItem.button_text}
+              icon={activeItem.ICON}
+              path={activeItem.path}
+            />
+          )}
         </div>
 
         <div className="sectioncon">

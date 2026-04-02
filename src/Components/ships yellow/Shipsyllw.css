@@ -1,0 +1,38 @@
+.shipy {
+    position: relative; /* Required for absolute positioning of pseudo-element */
+    display: flex;
+    padding: 12px 32px;
+    align-items: center;
+    gap: 8px;
+    color: #1E1E1E;
+    font-family: "Lexend Exa";
+    border-radius: 32px;
+    border: 2px solid rgba(237, 254, 142, 0.18);
+    background: linear-gradient(180deg, #EDFE8E 0%, #8E9855 100%);
+    z-index: 1;
+    overflow: hidden;
+    width:fit-content;
+  font-family: "Lexend Exa", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    transition: transform 0.2s ease;
+}
+
+/* Create the hover state layer */
+.shipy::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: -1;
+}
+
+.shipy:hover {
+    transform: translateY(-5px);
+}
+
+.shipy:hover::before {
+    opacity: 1;
+}

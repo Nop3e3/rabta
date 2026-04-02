@@ -1,14 +1,14 @@
 import React from 'react';
 import './Welcomesec.css';
 
-const Welcomesec = ({ text,name }) => {
+const Welcomesec = ({ text,name,caption }) => {
   
 
 
   return (
 <div className="Welcomesec" >
   <div className="thewelc">{text}{name}</div>
-  <div className="thecap">Ready to scale your brand today? Here are your latest supplier updates</div>
+  <div className="thecap">{caption}</div>
 </div>
   );
 };

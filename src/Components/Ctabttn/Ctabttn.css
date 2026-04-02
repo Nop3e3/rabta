@@ -40,6 +40,10 @@ line-height: 23.163px; /* 150% */
 letter-spacing: -0.031px;
   cursor: pointer;
   transition: background 0.2s ease;
+
+
+  padding: 12px 40px;
+
 }
  
 .Ctabttnn:hover {

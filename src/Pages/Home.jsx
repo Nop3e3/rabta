@@ -14,56 +14,56 @@ import Statscomp from "../Components/Statscomp/Statscomp.jsx";
 import Viewallbttn from "../Components/Viewallbttn/Viewallbttn.jsx";
 import ConsultantCard from "../Components/Consultantcard/Consultant.jsx";
 import Footer from "../Components/Footer/Footer.jsx";
+import DabtoLoadingScreen from "./Loading.jsx";
+
 export default function Home() {
   const [profile, setProfile] = useState(null);
   const [quickActions, setQuickActions] = useState([]);
   const [courses, setCourses] = useState([]);
   const [communityPosts, setCommunityPosts] = useState([]);
   const [mentors, setMentors] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
-      const { data: profileData, error: profileError } = await supabase
-        .from("home screen eng")
-        .select("greeting_text, name, pfp")
-        .eq("id", 1)
-        .single();
-      if (profileError) console.error("Profile error:", profileError);
-      else setProfile(profileData);
+      try {
+        const { data: profileData } = await supabase
+          .from("home screen eng")
+          .select("greeting_text, name, pfp")
+          .eq("id", 1)
+          .single();
+        setProfile(profileData);
 
-      const { data: qaData, error: qaError } = await supabase
-        .from("home screen eng")
-        .select("*")
-        .in("id", [1, 2, 3, 4])
-        .order("id", { ascending: true });
-      if (qaError) console.error("Quick Actions error:", qaError);
-      else setQuickActions(qaData);
+        const { data: qaData } = await supabase
+          .from("home screen eng")
+          .select("*")
+          .in("id", [1, 2, 3, 4])
+          .order("id", { ascending: true });
+        setQuickActions(qaData);
 
-      const { data: coursesData, error: coursesError } = await supabase
-        .from("learning_hub")
-        .select("*");
-      if (coursesError) console.error("Courses error:", coursesError);
-      else setCourses(coursesData);
+        const { data: coursesData } = await supabase.from("learning_hub").select("*");
+        setCourses(coursesData);
 
-      const { data: communityData, error: communityError } = await supabase
-        .from("community")
-        .select("*")
-        .eq("id", 1)
-        .single();
-      if (communityError) console.error("Community fetch error:", communityError);
-      else setCommunityPosts([communityData]);
+        const { data: communityData } = await supabase
+          .from("community")
+          .select("*")
+          .eq("id", 1)
+          .single();
+        setCommunityPosts([communityData]);
 
-      const { data: mentorsData, error: mentorsError } = await supabase
-        .from("find a mentor")
-        .select("*");
-      if (mentorsError) console.error("Mentors fetch error:", mentorsError);
-      else setMentors(mentorsData);
+        const { data: mentorsData } = await supabase.from("find a mentor").select("*");
+        setMentors(mentorsData);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
     }
 
     fetchData();
   }, []);
 
-  if (!profile) return null;
+  if (loading) return <DabtoLoadingScreen onComplete={() => setLoading(false)} />;
 
   return (
     <div className="homepage_bg">
@@ -72,10 +72,14 @@ export default function Home() {
       </div>
 
       <div className="mainconnn">
-        <Profiletopbar image={profile.pfp} />
+        <Profiletopbar image={profile?.pfp} />
+        <Welcomesec
+          text={profile?.greeting_text}
+          name={profile?.name}
+          caption="Ready to scale your brand today? Here are your latest supplier updates"
+        />
 
-        <Welcomesec text={profile.greeting_text} name={profile.name} />
-
+        {/* Quick Actions */}
         <div className="secsh">
           <Secttl text="Quick Actions" />
           <div className="qa-grid">
@@ -91,6 +95,7 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Other sections ... */}
         <div className="secsh">
           <Secttl text="How's your Business Lately" />
           <Statscomp />
@@ -113,11 +118,10 @@ export default function Home() {
         </div>
 
         <div className="secsh">
-            <div className="ttlcon">
+          <div className="ttlcon">
             <Secttl text="Latest from your community" />
             <Viewallbttn text="View All" />
           </div>
-      
           <div className="community-posts">
             {communityPosts.map((post) => (
               <SocialPost
@@ -137,33 +141,32 @@ export default function Home() {
         </div>
 
         <div className="secsh">
-               <div className="ttlcon">
+          <div className="ttlcon">
             <Secttl text="Featured Mentors" />
             <Viewallbttn text="View All" />
           </div>
           <div className="mentors-grid">
             {mentors.map((mentor) => (
-           <ConsultantCard
-  key={mentor.id}
-  avatarUrl={mentor["mentor's_pfp"]}
-  name={mentor["Mentors_name"]}
-  title={mentor["Mentor's_specialization"]}
-  sessions={mentor["Number_ of_clients1"]}
-  reviews={parseInt(mentor["featured_mentor's Rating number1"])}
-  ratingText={mentor["mentor's_rate"] ?? undefined}
-  tags={[mentor.Tag1, mentor.Tag2].filter(Boolean)}
-  responseTime="2 hours"
-  experience={`${mentor["Number_ of_clients1"]} clients`}
-  verifiedLabel={
-    mentor["featured_mentors_verification1"] ? "Verified" : undefined
-  }
-  onKnowMore={() => console.log(`Know more about ${mentor["Mentors_name"]}`)}
-  onBookSession={() => console.log(`Book session with ${mentor["Mentors_name"]}`)}
-/>
+              <ConsultantCard
+                key={mentor.id}
+                avatarUrl={mentor["mentor's_pfp"]}
+                name={mentor["Mentors_name"]}
+                title={mentor["Mentor's_specialization"]}
+                sessions={mentor["Number_ of_clients1"]}
+                reviews={parseInt(mentor["featured_mentor's Rating number1"])}
+                ratingText={mentor["mentor's_rate"] ?? undefined}
+                tags={[mentor.Tag1, mentor.Tag2].filter(Boolean)}
+                responseTime="2 hours"
+                experience={`${mentor["Number_ of_clients1"]} clients`}
+                verifiedLabel={mentor["featured_mentors_verification1"] ? "Verified" : undefined}
+                onKnowMore={() => console.log(`Know more about ${mentor["Mentors_name"]}`)}
+                onBookSession={() => console.log(`Book session with ${mentor["Mentors_name"]}`)}
+              />
             ))}
           </div>
         </div>
-        <Footer/>
+
+        <Footer />
       </div>
     </div>
   );

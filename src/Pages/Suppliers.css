@@ -1,0 +1,16 @@
+.ships{
+    display: flex;
+flex-direction: row;
+    gap: 20px;
+    width: 100%;
+    align-content: flex-start;
+
+    border-bottom: 2px solid rgba(255, 255, 255, 0.04);
+padding: 32px 50px;
+}
+.pagination-section{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+}
