@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
-import Coursecard from "../Components/coursecardhor/coursecard";
+
 import Profiletopbar from "../Components/Searchbar/Topbar.jsx";
 import Secttl from "../Components/Sectionttl/Sectionttl.jsx";
 import Sidebar from "../Components/SidebarHome.jsx";
@@ -15,7 +15,7 @@ import Viewallbttn from "../Components/Viewallbttn/Viewallbttn.jsx";
 import ConsultantCard from "../Components/Consultantcard/Consultant.jsx";
 import Footer from "../Components/Footer/Footer.jsx";
 import DabtoLoadingScreen from "./Loading.jsx";
-
+import Portfolio from "../Components/Portfolio/Portfolio.jsx";
 export default function Home() {
   const [profile, setProfile] = useState(null);
   const [quickActions, setQuickActions] = useState([]);
@@ -165,7 +165,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-
+  
         <Footer />
       </div>
     </div>

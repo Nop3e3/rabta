@@ -1,0 +1,37 @@
+
+.mainconnnn{
+
+display: flex;
+flex-direction: column;
+padding-right: 1%;
+gap:56px;
+
+align-items: flex-end;
+  width: 80%;
+}
+.specs{
+  border-radius: 16px;
+background: var(--yellow-sections-background, linear-gradient(0deg, #141414 -51.88%, #2C2A32 100%));
+width: 100%;
+color: #FFF;
+
+font-family: "Lexend Exa";
+font-size: 32px;
+font-style: normal;
+font-weight: 700;
+padding: 48px 45px;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+gap: 32px;
+line-height: 46.713px; /* 145.977% */
+box-shadow: 0 8px 14.3px 0 rgba(255, 255, 255, 0.02);
+}
+.iconnttl{
+  display: flex;
+justify-content: flex-start;
+align-items: center;
+gap: 10px;
+width: 100%;
+align-self: stretch;
+}

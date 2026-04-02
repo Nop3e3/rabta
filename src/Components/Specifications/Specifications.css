@@ -1,0 +1,52 @@
+.sscontainer {
+  width: 100%;
+  padding: 20px;
+}
+
+.title {
+  color: var(--text-primary);
+  font-size: 2rem;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.sscard {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* space between items */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.capability-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.star-icon {
+  width: 24px;
+  height: 24px;
+  margin-top: 4px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-title {
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.item-desc {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.5;
+}

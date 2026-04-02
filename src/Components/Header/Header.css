@@ -1,0 +1,132 @@
+:root {
+  --bg-dark: #121212;
+  --accent-lime: #d4e97d;
+  --text-main: #ffffff;
+  --text-dim: #999999;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+}
+
+.profile-container {
+  font-family: 'Lexend Exa', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  padding: 40px;
+  width: 100%;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;       /* ADDED */
+  overflow: hidden;         /* ADDED */
+}
+
+/* ADDED */
+.profile-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #1E1E1E 20.63%, rgba(30, 30, 30, 0.90) 63.94%, #1E1E1E 95.67%);
+
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 0;
+}
+
+.profile-content {
+  width: 100%;
+  position: relative;       /* ADDED */
+  z-index: 1;               /* ADDED */
+}
+
+/* Header Layout */
+.header-main {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+.factory-image {
+  width: 140px;
+  height: 140px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* Typography & Info */
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.title-row h1 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.rating {
+  font-size: 14px;
+}
+
+.star { color: var(--accent-lime); margin-right: 4px; }
+.count { color: var(--text-dim); margin-left: 4px; }
+
+.badge {
+  color: #B6F193;
+  font-size: 14px;
+  margin: 8px 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.metadata {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: flex-start;
+}
+
+.specialization {
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.underline {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Buttons / Tabs */
+.tab-group {
+  display: flex;
+  gap: 15px;
+}
+
+.tab {
+  font-family: 'Lexend Exa', sans-serif;
+  background: var(--glass-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-main);
+  padding: 12px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.tab.active {
+  background-color: var(--accent-lime);
+  color: #1a1a1a;
+  border: none;
+  box-shadow: 0 4px 15px rgba(212, 233, 125, 0.3);
+}
+
+.tab:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.1);
+}

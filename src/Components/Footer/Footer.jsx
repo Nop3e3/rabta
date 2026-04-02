@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import "./Footer.css";
-
+import Logo from "../../Assets/logo white.svg";
 const faqData = [
   {
     q: "What is the Asset Library?",
@@ -172,7 +172,7 @@ export default function Footer() {
               </svg>
             </button>
 
-            <div className="logo-text">dabta</div>
+            <img src={Logo} alt="" />
 
             <p className="brand-desc">
               The purpose of a FAQ is generally to provide information.

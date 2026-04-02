@@ -14,11 +14,23 @@ import Shipyllw from "../Components/ships yellow/Shipsyllw.jsx";
 import Filterbttn from "../Components/FIilterbttn/Filterbttn.jsx";
 import Shipwhite from "../Components/Shipwhite/Shipwhite.jsx";
 import DabtoLoadingScreen from "./Loading.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function Suppliers() {
   const [profile, setProfile] = useState(null);
   const [suppliers, setSuppliers] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
+
+  // Click handler for supplier cards
+  const handleSupplierClick = (id) => {
+    if (id === 2) {
+      navigate("/elite-appareal"); // Replace with your target route
+    } else {
+      navigate(`/supplier/${id}`); // Optional: dynamic route for other suppliers
+    }
+  };
 
   // Fetch profile
   useEffect(() => {
@@ -84,6 +96,7 @@ export default function Suppliers() {
             leadTime={supplier["Lead Time"]}
             available={true}
             image={supplier.suppliers_pfp}
+            onClick={() => handleSupplierClick(supplier.id)} // ← Added click handler
           />
         ))}
 
