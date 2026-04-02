@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import Polll from "../Components/Pollpost/Poll.jsx";
 import SocialPost from "../Components/Socialpost1/Socialpost1.jsx"; // Keep original SocialPost
@@ -15,7 +16,9 @@ import Footer from "../Components/Footer/Footer.jsx";
 import DabtoLoadingScreen from "./Loading.jsx";
 import Viewallbttn from "../Components/Viewallbttn/Viewallbttn.jsx";
 import Vid from "../Components/videopost/Videopost.jsx";
+
 export default function Home() {
+  const navigate = useNavigate(); // For SPA navigation
   const [profile, setProfile] = useState(null);
   const [communities, setCommunities] = useState([]);
   const [communityPost, setCommunityPost] = useState(null); // post id=1
@@ -107,6 +110,11 @@ export default function Home() {
               postsToday={community.groupsactivitycount}
               members={community["Groups member count"]}
               buttonText="Join group"
+              onClick={() => {
+                if (community.id === 1) {
+                  navigate("/NewEnterpenuers"); // Replace with your page path
+                }
+              }}
             />
           ))}
         </div>
@@ -117,7 +125,7 @@ export default function Home() {
             <SocialPost
               key={communityPost.id}
               avatarUrl={communityPost["posting_user's_pfp1"]}
-              brandName={communityPost["User's _group_name"] || "Community"} // <-- use User's _group_name
+              brandName={communityPost["User's _group_name"] || "Community"} 
               userName={communityPost["User's_name"]}
               postDate="10 Feb 2026"
               caption={communityPost.post_text1}
@@ -138,17 +146,18 @@ export default function Home() {
           <SocialCard
             key={post.id}
             profileImg={post["posting_user's_pfp1"]}
-            brandName={post["User's _group_name"] || "Community"} // <-- use User's _group_name
+            brandName={post["User's _group_name"] || "Community"} 
             metaData={post["User's_name"] + " • 10 Feb 2026"}
             content={post.post_text1 || post.post_text3}
-            tags={["#Growth", "#SupplyChain"]} // optional, can be dynamic later
+            tags={["#Growth", "#SupplyChain"]}
             likes={post.Like_count || 0}
             shares={post.Share_count || 0}
             comments={post.Comment_count || 0}
           />
         ))}
-<Vid/>
-<Polll/>
+
+        <Vid />
+        <Polll />
         <Footer />
       </div>
     </div>
