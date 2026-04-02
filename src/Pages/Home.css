@@ -93,3 +93,49 @@ align-self: stretch;
   align-self: stretch;
 
 }
+.shipsS{
+    display: flex;
+flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    overflow-x: hidden;
+    align-content: flex-start;
+
+    border-bottom: 2px solid rgba(255, 255, 255, 0.04);
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 8px;
+    padding-bottom: 40PX;
+    scrollbar-width: none;
+}
+
+.ships-wrapper::-webkit-scrollbar {
+    display: none;
+}
+.shipcon{
+    display: flex;
+flex-direction: row;
+    gap: 20px;
+    width: 100%;
+    overflow-x: hidden;
+    align-content: flex-start;
+
+
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 8px;
+
+    scrollbar-width: none;
+}
+
+.ships-wrapper::-webkit-scrollbar {
+    display: none;
+}
+.arrw-wrapper {
+  margin-top: 2px;
+  transform: scale(0.5);
+  transform-origin: top left; /* change anchor if needed */
+  display: inline-flex;
+}
