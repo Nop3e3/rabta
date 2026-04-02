@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@300;400;600&display=swap');
+
+:root {
+  --font-main: 'Lexend Exa', sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.card-wrapper {
+  position: relative;
+  width: 400px;
+  height: 500px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8);
+}
+.card-wrapper {
+  position: relative;
+  width: 400px;
+  height: 500px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* NEW: dark gradient overlay */
+.bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Dark gradient from top transparent to bottom black */
+  background:  linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0.07) 100%);
+  z-index: 1; /* sits above bg-image but below glass-card */
+}
+
+.glass-card {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  right: 15px;
+  z-index: 2;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px); /* This creates the frosted glass look */
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  color: white;
+  border-radius: 11px;
+background: rgba(30, 30, 30, 0.43);
+  font-family: var(--font-main);
+}
+
+
+.profile-icon {
+  width: 60px;
+  height: 60px;
+
+  object-fit:cover;     /* Ensures the image covers the container nicely */
+display: flex;
+align-items: center;
+justify-content: center;
+  border-radius: 12px;
+  margin-top: -50px; /* Pulls the icon up into the image area */
+  margin-bottom: 16px;
+  border: 4px solid rgba(255,255,255,0.1);
+  overflow: hidden;
+}
+
+.icon-placeholder {
+
+  background: repeating-linear-gradient(
+    45deg,
+    #ccc,
+    #ccc 5px,
+    #eee 5px,
+    #eee 10px
+  );
+  width: 100%;
+  height: 100%;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  opacity: 0.6;
+  margin-bottom: 20px;
+}
+.fitcon{
+  width: fit-content;
+}
+.stat{
+  display: flex;
+  color: #FFF;
+  flex-direction: row;
+align-items: center;
+justify-content: center;
+font-family: "Lexend Exa";
+font-size: 12px;
+gap: 5px;
+font-style: normal;
+font-weight: 400;
+line-height: 16px; /* 114.286% */
+  width: 100%;
+}
+
+.stats-row {
+  display: flex;
+  align-items: center;
+  width:fit-content;
+  gap: 10px;
+  width: 100%;
+  font-size: 0.85rem;
+  margin-bottom: 24px;
+}
+
+.dot {
+  opacity: 0.5;
+}
+
+.join-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 30px;
+  border: none;
+  font-family: var(--font-main);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  /* Gradient matching your image's olive/gold tone */
+  background: linear-gradient(to bottom, #8b915a, #656d3a);
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+.join-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+.icon-img{
+object-fit: contain;
+width: 200%;
+
+aspect-ratio: 1/1;
+}
+.card-wrapper {
+  position: relative;
+  width: 400px;
+  height: 500px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover transition */
+  cursor: pointer; /* pointer for hover effect */
+}
+
+/* Hover effect */
+.card-wrapper:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+}
+
+.bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease; /* smooth zoom on hover */
+}
+
+/* Optional: slightly zoom background on hover */
+.card-wrapper:hover .bg-image {
+  transform: scale(1.05);
+}
+
+/* Optional: dark overlay intensifies on hover */
+.card-wrapper:hover .bg-overlay {
+  background: linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0.2) 100%);
+}

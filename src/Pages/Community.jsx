@@ -1,32 +1,31 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
-
+import Polll from "../Components/Pollpost/Poll.jsx";
+import SocialPost from "../Components/Socialpost1/Socialpost1.jsx"; // Keep original SocialPost
+import SocialCard from "../Components/Txtpost/Txtpost.jsx"; // For posts id=2 & 3
+import Shipyllw from "../Components/ships yellow/Shipsyllw.jsx";
+import Comcard from "../Components/comcard/Comcard.jsx";
+import Shipwhite from "../Components/Shipwhite/Shipwhite.jsx";
 import Profiletopbar from "../Components/Searchbar/Topbar.jsx";
 import Secttl from "../Components/Sectionttl/Sectionttl.jsx";
 import Sidebar from "../Components/Sidbarcommunity.jsx";
-import Coursessec from "../Components/Coursecards_comp/Coursecards_comp.jsx";
-import SocialPost from "../Components/Socialpost1/Socialpost1.jsx";
-import Quickaction from "../Components/Quickactions/Quickaction.jsx";
 import Welcomesec from "../Components/Welcomesec/Welcomsec.jsx";
 import { supabase } from "../Supabase";
-import Operations from "../Components/Operations/Operations.jsx";
-import Statscomp from "../Components/Statscomp/Statscomp.jsx";
-import Viewallbttn from "../Components/Viewallbttn/Viewallbttn.jsx";
-import ConsultantCard from "../Components/Consultantcard/Consultant.jsx";
 import Footer from "../Components/Footer/Footer.jsx";
 import DabtoLoadingScreen from "./Loading.jsx";
-
+import Viewallbttn from "../Components/Viewallbttn/Viewallbttn.jsx";
+import Vid from "../Components/videopost/Videopost.jsx";
 export default function Home() {
   const [profile, setProfile] = useState(null);
-  const [quickActions, setQuickActions] = useState([]);
-  const [courses, setCourses] = useState([]);
-  const [communityPosts, setCommunityPosts] = useState([]);
-  const [mentors, setMentors] = useState([]);
+  const [communities, setCommunities] = useState([]);
+  const [communityPost, setCommunityPost] = useState(null); // post id=1
+  const [communityPosts, setCommunityPosts] = useState([]); // posts id=2 & 3
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
       try {
+        // Fetch profile
         const { data: profileData } = await supabase
           .from("home screen eng")
           .select("greeting_text, name, pfp")
@@ -34,25 +33,28 @@ export default function Home() {
           .single();
         setProfile(profileData);
 
-        const { data: qaData } = await supabase
-          .from("home screen eng")
-          .select("*")
-          .in("id", [1, 2, 3, 4])
-          .order("id", { ascending: true });
-        setQuickActions(qaData);
+        // Fetch all communities
+        const { data: communitiesData, error: communitiesError } = await supabase
+          .from("community")
+          .select("*");
+        if (communitiesError) throw communitiesError;
+        setCommunities(communitiesData || []);
 
-        const { data: coursesData } = await supabase.from("learning_hub").select("*");
-        setCourses(coursesData);
-
-        const { data: communityData } = await supabase
+        // Fetch only post with id=1
+        const { data: postData } = await supabase
           .from("community")
           .select("*")
           .eq("id", 1)
           .single();
-        setCommunityPosts([communityData]);
+        setCommunityPost(postData || null);
 
-        const { data: mentorsData } = await supabase.from("find a mentor").select("*");
-        setMentors(mentorsData);
+        // Fetch posts with id=2 and id=3
+        const { data: postsData, error: postsError } = await supabase
+          .from("community")
+          .select("*")
+          .in("id", [2, 3]);
+        if (postsError) throw postsError;
+        setCommunityPosts(postsData || []);
       } catch (err) {
         console.error(err);
       } finally {
@@ -74,98 +76,79 @@ export default function Home() {
       <div className="mainconnn">
         <Profiletopbar image={profile?.pfp} />
         <Welcomesec
-          text={profile?.greeting_text}
-          name={profile?.name}
-          caption="Ready to scale your brand today? Here are your latest supplier updates"
+          text="Community"
+          caption="Meet your success partners. A community bringing together elite designers, suppliers, and industry experts in one place"
         />
 
-        {/* Quick Actions */}
-        <div className="secsh">
-          <Secttl text="Quick Actions" />
-          <div className="qa-grid">
-            {quickActions.map((item) => (
-              <Quickaction
-                key={item.id}
-                title={item.quick_actions_title}
-                caption={item.quick_actions_captionn}
-                image={item.quick_actions_image}
-                button={item.quick_actions_button}
-              />
-            ))}
+        <div className="shipsS">
+          <div className="shipcon">
+            <Shipyllw text="Feed" />
+            <Shipwhite text="Groups" />
+            <Shipwhite text="Events" />
+            <Shipwhite text="Saved" />
           </div>
-        </div>
-
-        {/* Other sections ... */}
-        <div className="secsh">
-          <Secttl text="How's your Business Lately" />
-          <Statscomp />
         </div>
 
         <div className="secsh">
           <div className="ttlcon">
-            <Secttl text="Active Operations" />
+            <Secttl text="Featured Groups" />
             <Viewallbttn text="View All" />
           </div>
-          <Operations />
         </div>
 
-        <div className="secsh">
-          <div className="ttlcon">
-            <Secttl text="Recommended Courses" />
-            <Viewallbttn text="View All" />
-          </div>
-          <Coursessec courses={courses} />
+        {/* Render all communities */}
+        <div className="comcon">
+          {communities.map((community) => (
+            <Comcard
+              key={community.id}
+              bgImage={community.groups_pfp}
+              icon={community.groups_pfp}
+              title={community["Groups’s_name"]}
+              postsToday={community.groupsactivitycount}
+              members={community["Groups member count"]}
+              buttonText="Join group"
+            />
+          ))}
         </div>
 
-        <div className="secsh">
-          <div className="ttlcon">
-            <Secttl text="Latest from your community" />
-            <Viewallbttn text="View All" />
-          </div>
+        {/* Render post with id=1 using original SocialPost */}
+        {communityPost && (
           <div className="community-posts">
-            {communityPosts.map((post) => (
-              <SocialPost
-                key={post.id}
-                avatarUrl={post["posting_user's_pfp1"]}
-                brandName={post["Groups's Name1"]}
-                userName={post["User's_name"]}
-                postDate="10 Feb 2026"
-                caption={post.post_text1}
-                images={[post.post_img1, post.post_img2, post.post_img3].filter(Boolean)}
-                likes={post.Like_count || 0}
-                shares={post.Share_count || 0}
-                comments={post.Comment_count || 0}
-              />
-            ))}
+            <SocialPost
+              key={communityPost.id}
+              avatarUrl={communityPost["posting_user's_pfp1"]}
+              brandName={communityPost["User's _group_name"] || "Community"} // <-- use User's _group_name
+              userName={communityPost["User's_name"]}
+              postDate="10 Feb 2026"
+              caption={communityPost.post_text1}
+              images={[
+                communityPost.post_img1,
+                communityPost.post_img2,
+                communityPost.post_img3,
+              ].filter(Boolean)}
+              likes={communityPost.Like_count || 0}
+              shares={communityPost.Share_count || 0}
+              comments={communityPost.Comment_count || 0}
+            />
           </div>
-        </div>
+        )}
 
-        <div className="secsh">
-          <div className="ttlcon">
-            <Secttl text="Featured Mentors" />
-            <Viewallbttn text="View All" />
-          </div>
-          <div className="mentors-grid">
-            {mentors.map((mentor) => (
-              <ConsultantCard
-                key={mentor.id}
-                avatarUrl={mentor["mentor's_pfp"]}
-                name={mentor["Mentors_name"]}
-                title={mentor["Mentor's_specialization"]}
-                sessions={mentor["Number_ of_clients1"]}
-                reviews={parseInt(mentor["featured_mentor's Rating number1"])}
-                ratingText={mentor["mentor's_rate"] ?? undefined}
-                tags={[mentor.Tag1, mentor.Tag2].filter(Boolean)}
-                responseTime="2 hours"
-                experience={`${mentor["Number_ of_clients1"]} clients`}
-                verifiedLabel={mentor["featured_mentors_verification1"] ? "Verified" : undefined}
-                onKnowMore={() => console.log(`Know more about ${mentor["Mentors_name"]}`)}
-                onBookSession={() => console.log(`Book session with ${mentor["Mentors_name"]}`)}
-              />
-            ))}
-          </div>
-        </div>
-  
+        {/* Render posts with id=2 & 3 using SocialCard */}
+        {communityPosts.map((post) => (
+          <SocialCard
+            key={post.id}
+            profileImg={post["posting_user's_pfp1"]}
+            brandName={post["User's _group_name"] || "Community"} // <-- use User's _group_name
+            metaData={post["User's_name"] + " • 10 Feb 2026"}
+            content={post.post_text1 || post.post_text3}
+            tags={["#Growth", "#SupplyChain"]} // optional, can be dynamic later
+            likes={post.Like_count || 0}
+            shares={post.Share_count || 0}
+            comments={post.Comment_count || 0}
+          />
+        ))}
+<Vid/>
+<Polll/>
         <Footer />
       </div>
     </div>

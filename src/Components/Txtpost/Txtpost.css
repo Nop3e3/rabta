@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@300;400;500&display=swap');
+
+:root {
+  --bg-color: #121214;
+  --card-bg: #1e1e20;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --tag-bg: rgba(255, 255, 255, 0.1);
+}
+
+.postT-container {
+  position: relative;
+  overflow: hidden;
+
+  /* same entrance animation */
+  opacity: 0;
+  animation: card-in 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  /* same transition feel */
+  transition:
+    box-shadow 0.35s ease,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* border layer */
+.postT-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.06); /* fallback for var(--card-border) */
+  pointer-events: none;
+  transition: border-color 0.4s ease;
+  z-index: 1;
+}
+
+/* top accent line */
+.postT-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(182, 212, 62, 0.8),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+}
+
+.postT-container {
+border: 2px solid #2C2A32;
+
+background: linear-gradient(0deg, #141414 -51.88%, #2C2A32 152.71%);
+
+/* SHADOW */
+box-shadow: 0 7px 13.1px 6px rgba(30, 30, 30, 0.13);
+
+
+  color: #ffffff;
+  font-family: 'Lexend Exa', sans-serif;
+  width: 100%;
+
+  border-radius: 16px;
+  height: fit-content;
+  margin: 20px auto;
+}
+
+/* hover EXACT match */
+.postT-container:hover {
+  box-shadow:
+    0 0 0 1px rgba(182, 212, 62, 0.13),
+    0 24px 64px rgba(0, 0, 0, 0.6),
+    0 4px 20px rgba(182, 212, 62, 0.07);
+
+  transform: translateY(-3px);
+}
+
+.postT-container:hover::before {
+  border-color: rgba(182, 212, 62, 0.18);
+}
+
+.postT-container:hover::after {
+  opacity: 1;
+}
+
+
+
+
+
+.card-body {
+  width: 100%;
+border-radius: 16px;
+
+  border-radius: 16px;
+  padding: 24px;
+
+}
+
+/* Header Styles */
+.card-header {
+  margin-bottom: 24px;
+}
+
+.profile-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.profile-image-container {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.bg-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+.user-img {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--card-bg);
+  object-fit: cover;
+}
+
+.brand-name {
+  color: var(--text-primary);
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.meta-data {
+  color: var(--text-secondary);
+  font-size: 12px;
+  margin: 4px 0 0 0;
+}
+
+/* Content Styles */
+.card-content p {
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 300;
+  margin-bottom: 24px;
+}
+
+/* Tag Styles */
+.tags-container {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.tag {
+  background: var(--tag-bg);
+  color: var(--text-primary);
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-size: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Footer Styles */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-primary);
+  font-size: 13px;
+}
+
+.stats {
+  display: flex;
+  gap: 24px;
+}
+
+.stat-item, .save-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.stat-item:hover, .save-icon:hover {
+  opacity: 0.7;
+}
+
+.save-icon {
+  margin-left: auto;
+}
+.card-header{
+    background-color: transparent;
+}
