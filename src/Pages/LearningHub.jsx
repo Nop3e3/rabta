@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
+
 import Course2 from "../Components/Course2/Course2.jsx";
 import Viewallbttn from "../Components/Viewallbttn/Viewallbttn.jsx";
 import Secttl from "../Components/Sectionttl/Sectionttl.jsx";

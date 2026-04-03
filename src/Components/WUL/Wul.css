@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg-dark: #0f0f12;
+  --card-bg: #1a1a1e;
+  --item-bg: rgba(255, 255, 255, 0.03);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --text-main: #ffffff;
+}
+.card-container {
+  font-family: 'Lexend Exa', sans-serif;
+  background-color: var(--card-bg);
+  padding: 40px;
+  border-radius: 16px;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.card-title {
+  color: var(--text-main);
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 32px;
+  letter-spacing: -0.5px;
+}
+
+.list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  background-color: var(--item-bg);
+  border: 1px solid var(--border-color);
+  padding: 20px 24px;
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+}
+
+.list-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.check-icon {
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--text-main);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 18px;
+  flex-shrink: 0;
+}
+
+.check-icon svg {
+  width: 16px;
+  height: 16px;
+  color: var(--text-main);
+}
+
+.list-text {
+  color: var(--text-main);
+  font-size: 16px;
+  font-weight: 300;
+  margin: 0;
+  line-height: 1.4;
+}

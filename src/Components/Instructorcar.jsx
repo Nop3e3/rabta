@@ -10,7 +10,7 @@ const InstructorCard = () => {
       alignItems: 'center',
       gap: '20px',
       width: '100%',
-      maxWidth: '800px',
+  
       fontFamily: '"Lexend Exa", sans-serif',
       color: '#FFFFFF',
     },
@@ -78,13 +78,13 @@ const InstructorCard = () => {
       {/* Profile Image Section */}
       <div style={styles.imageWrapper}>
         <img 
-          src="https://via.placeholder.com/100" // Replace with Sarah's actual image URL
+          src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHdvbWFufGVufDB8fDB8fHww" // Replace with Sarah's actual image URL
           alt="Sarah Hassan" 
           style={styles.profileImg}
         />
         <div style={styles.googleBadge}>
           <img 
-            src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_Logo.svg" 
+            src="https://media.wired.com/photos/5926ffe47034dc5f91bed4e8/master/pass/google-logo.jpg" 
             alt="Google" 
             style={{ width: '18px' }}
           />

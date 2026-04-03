@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@300;400;500&display=swap');
+
+:root {
+  --bg-dark: #0f0f11;
+  --card-glass: rgba(255, 255, 255, 0.03);
+  --border-glass: rgba(255, 255, 255, 0.1);
+  --bright-green: #68cc45; /* The "Done" Green */
+  --muted-green: #3d4928;  /* The "In-Progress" Green */
+}
+
+
+.card-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  color: #ffffff;
+
+}
+
+.module-card {
+  position: relative;
+  background: var(--card-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: 24px;
+  padding: 30px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  backdrop-filter: blur(12px);
+}
+
+/* Extra padding for the module with the bottom bar */
+.module-card.active {
+  padding-bottom: 50px;
+}
+
+.module-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0 0 6px 0;
+}
+
+.module-meta {
+  font-size: 0.8rem;
+  color: #888;
+  margin: 0;
+}
+
+/* THE GREEN INDICATORS */
+
+/* 1. The Badge on the right */
+.progress-badge {
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Completed State: Solid bright green with dark text */
+.progress-badge.is-complete {
+  background-color: var(--bright-green);
+  color: #122a0a; 
+  box-shadow: 0 0 15px rgba(104, 204, 69, 0.2);
+  display: flex;
+padding: 4px 12px;
+align-items: center;
+gap: 8px;
+color: #B6F193;
+
+text-align: center;
+font-family: "Lexend Exa";
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 171.429% */
+letter-spacing: -0.028px;
+border-radius: 32px;
+background: rgba(98, 247, 10, 0.23);
+}
+
+/* Partial State: Darker/Muted green background */
+.progress-badge.is-partial {
+  background-color: var(--muted-green);
+  color: var(--bright-green);
+display: flex;
+padding: 4px 12px;
+align-items: center;
+gap: 8px;
+color: #E1F193;
+
+text-align: center;
+font-family: "Lexend Exa";
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 171.429% */
+letter-spacing: -0.028px;
+border-radius: 32px;
+background: rgba(215, 247, 10, 0.23);
+}
+
+/* 2. The Horizontal bar at the bottom (for active module) */
+.bottom-progress-track {
+  position: absolute;
+  bottom: 20px;
+  left: 40px;
+  right: 40px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bottom-progress-fill {
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25); /* Muted white fill as per the image */
+  border-radius: 10px;
+}

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
+import Wul from "../Components/WUL/Wul.jsx";
+import Progressbar from "../Components/Forms/Progressbar.jsx";
 import Secttl from "../Components/Sectionttl/Sectionttl.jsx";
 import Profiletopbar from "../Components/Searchbar/Topbar.jsx";
 import Sidebar from "../Components/Sidebarlearning.jsx";
@@ -9,6 +11,7 @@ import DabtoLoadingScreen from "./Loading.jsx";
 import { supabase } from "../Supabase";
 import TaskCardd from "../Components/TaskCard/TaskCard.jsx";
 import { useNavigate } from "react-router-dom";
+import Modulecard from "../Components/Modulecard/Modulecard.jsx";
 import Courseheader from "../Components/courseheader/courseheader.jsx";
 import Instructorc from "../Components/Instructorcar.jsx";
 export default function Suppliers() {
@@ -71,26 +74,24 @@ export default function Suppliers() {
       <div className="mainconnn"><Courseheader />
 <Instructorc/>
      
-        <Welcomesec
-          text="Learning Hub"
-          caption="Upgrade your skills to maximize your business goals"
-        />
+        
 
         <div className="secsh">
-          <Secttl text={`Welcome Back, ${profile?.name}`} />
-          <div className="lvl">
-            Your goal is to grow in your role with
-            <div className="course"> Fashion Supply Chain Management </div>
-          </div>
+          <Secttl text="Your Progress Lately" />
+          <div class="tageggg"> ↖ Your progress has increasedthe past week by 20%</div>
+        
         </div>
-
+<Progressbar fillPercent={40} text="Product Information" caption="Modules 4 out of 10" />
         <div className="ttlcon">
           <Secttl text="Today's Goals" />
         </div>
 
         <TaskCardd />
 
-        
+        <Wul/>
+
+        <Modulecard/>
+              <button type="button" className="nxt" >Continue to course </button>
         <Footer />
       </div>
     </div>
