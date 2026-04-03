@@ -6,6 +6,7 @@ import Newenterpenuers from "./Pages/NewEnterpenuers";
 import Suppliers from "./Pages/Suppliers";
 import Faq from "./Pages/FAQ"
 
+import RequestQuote2 from "./Pages/RequestQuote2.jsx"
 import RequestQuote1 from "./Pages/RequestQuote1.jsx"
 import Mentorship from "./Pages/Mentorship"
 import LearningHub from "./Pages/LearningHub.jsx";
@@ -17,6 +18,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/RequestQuote1" element={<RequestQuote1 />} />
+        <Route path="/RequestQuote2" element={<RequestQuote2/>} />
        <Route path="/Mentorship" element={<Mentorship />} />
       <Route path="/Learninghub" element={<LearningHub/>} />
       <Route path="/Faq" element={<Faq />} />

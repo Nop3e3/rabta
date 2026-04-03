@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './QuoteForm.css';
-
+import arw from "../../Assets/arrow_forward.svg";
+import alert from "../../Assets/error.svg";
 // ─── Constants ──────────────────────────────────────────────────────────────
 
 const DEFAULT_SIZES = [
@@ -84,10 +85,11 @@ function RadioOption({ value, selected, onChange, label, description }) {
 
 // ─── StepTwo ─────────────────────────────────────────────────────────────────
 
-export default function StepTwo({ formData, updateField, errors }) {
+export default function StepTwo({ formData, updateField, onNext }) {
   const [newCustomSize, setNewCustomSize] = useState('');
   const [newCustomNeed, setNewCustomNeed] = useState('');
   const [showCustomNeedInput, setShowCustomNeedInput] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const sizes = formData.sizes || { small: false, medium: false, large: false };
   const sizeQuantities = formData.sizeQuantities || { small: '100', medium: '100', large: '100' };
@@ -98,51 +100,57 @@ export default function StepTwo({ formData, updateField, errors }) {
   const additionalSpecsLen = (formData.additionalSpecs || '').length;
 
   /* ── helpers ── */
-  const toggleSize = id => {
-    updateField('sizes', { ...sizes, [id]: !sizes[id] });
-  };
-
-  const updateSizeQty = (id, val) => {
-    updateField('sizeQuantities', { ...sizeQuantities, [id]: val });
-  };
-
+  const toggleSize = id => updateField('sizes', { ...sizes, [id]: !sizes[id] });
+  const updateSizeQty = (id, val) => updateField('sizeQuantities', { ...sizeQuantities, [id]: val });
   const addCustomSize = () => {
     if (!newCustomSize.trim()) return;
     updateField('customSizes', [...customSizes, { label: newCustomSize.trim(), qty: '100', unit: 'pieces' }]);
     setNewCustomSize('');
   };
-
   const removeCustomSize = idx => {
     const updated = [...customSizes];
     updated.splice(idx, 1);
     updateField('customSizes', updated);
   };
-
   const updateCustomSizeQty = (idx, qty) => {
     const updated = [...customSizes];
     updated[idx] = { ...updated[idx], qty };
     updateField('customSizes', updated);
   };
-
-  const toggleCert = id => {
-    updateField('certifications', { ...certifications, [id]: !certifications[id] });
-  };
-
-  const toggleCustomization = id => {
-    updateField('customizationNeeds', { ...customizationNeeds, [id]: !customizationNeeds[id] });
-  };
-
+  const toggleCert = id => updateField('certifications', { ...certifications, [id]: !certifications[id] });
+  const toggleCustomization = id => updateField('customizationNeeds', { ...customizationNeeds, [id]: !customizationNeeds[id] });
   const addCustomNeed = () => {
     if (!newCustomNeed.trim()) return;
     updateField('customNeeds', [...customNeeds, newCustomNeed.trim()]);
     setNewCustomNeed('');
     setShowCustomNeedInput(false);
   };
-
   const removeCustomNeed = idx => {
     const updated = [...customNeeds];
     updated.splice(idx, 1);
     updateField('customNeeds', updated);
+  };
+
+  /* ── VALIDATION ── */
+  const validateStep = () => {
+    const newErrors = {};
+    if (!formData.sizeRange) newErrors.sizes = "Please select a size range";
+    if (!formData.qualityStandard) newErrors.qualityStandard = "Please select a quality standard";
+    if (!Object.values(sizes).some(v => v) && customSizes.length === 0)
+      newErrors.sizes = "Select at least one default or custom size";
+    if (!formData.additionalSpecs) newErrors.additionalSpecs = "Please provide additional specifications";
+    if (!Object.values(customizationNeeds).some(v => v) && customNeeds.length === 0)
+      newErrors.customizationNeeds = "Select at least one customization need";
+
+    return newErrors;
+  };
+
+  const handleNext = () => {
+    const validationErrors = validateStep();
+    setErrors(validationErrors);
+    if (Object.keys(validationErrors).length === 0) {
+      onNext?.();
+    }
   };
 
   return (
@@ -150,7 +158,7 @@ export default function StepTwo({ formData, updateField, errors }) {
 
       {/* ── Info Banner ── */}
       <div className="qf-info-banner">
-        <span className="qf-info-icon">ℹ</span>
+        <span className="qf-info-icon"><img src={alert}alt="" /></span>
         <p className="qf-info-text">
           More details help suppliers provide accurate quotes. Skip any section if not applicable.
         </p>
@@ -164,7 +172,6 @@ export default function StepTwo({ formData, updateField, errors }) {
           </h2>
         </div>
 
-        {/* Size range selector */}
         <div className="qf-field">
           <select
             className="qf-select"
@@ -178,7 +185,6 @@ export default function StepTwo({ formData, updateField, errors }) {
           </select>
         </div>
 
-        {/* Default sizes */}
         <div className="qf-size-rows">
           {DEFAULT_SIZES.map(sz => (
             <div key={sz.id} className={`qf-size-row ${sizes[sz.id] ? 'active' : ''}`}>
@@ -221,7 +227,6 @@ export default function StepTwo({ formData, updateField, errors }) {
             </div>
           ))}
 
-          {/* Custom sizes */}
           {customSizes.map((cs, i) => (
             <div key={i} className="qf-size-row active">
               <div className="qf-chk-box checked" style={{ flexShrink: 0 }}>
@@ -251,26 +256,23 @@ export default function StepTwo({ formData, updateField, errors }) {
           ))}
         </div>
 
-        {/* Add custom size */}
-        <div>
-          <div className="qf-custom-size-row">
-            <input
-              className="qf-custom-size-inp"
-              type="text"
-              placeholder="e.g., XL, EU 42, Custom 30×40cm"
-              value={newCustomSize}
-              onChange={e => setNewCustomSize(e.target.value)}
-              onKeyDown={e => e.key === 'Enter' && addCustomSize()}
-            />
-            <button className="qf-custom-size-del" onClick={addCustomSize} aria-label="Add size"
-              style={{ color: 'var(--ac)', borderColor: 'rgba(237,254,142,0.3)' }}>
-              +
-            </button>
-          </div>
-          <button className="qf-add-btn" style={{ marginTop: '6px' }} onClick={addCustomSize}>
-            + Add a custom Size
+        <div className="qf-custom-size-row">
+          <input
+            className="qf-custom-size-inp"
+            type="text"
+            placeholder="e.g., XL, EU 42, Custom 30×40cm"
+            value={newCustomSize}
+            onChange={e => setNewCustomSize(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && addCustomSize()}
+          />
+          <button className="qf-custom-size-del" onClick={addCustomSize} aria-label="Add size"
+            style={{ color: 'var(--ac)', borderColor: 'rgba(237,254,142,0.3)' }}>
+            +
           </button>
         </div>
+        <button className="qf-add-btn" style={{ marginTop: '6px' }} onClick={addCustomSize}>
+          + Add a custom Size
+        </button>
 
         <FieldError message={errors.sizes} />
       </div>
@@ -355,9 +357,9 @@ export default function StepTwo({ formData, updateField, errors }) {
             rows={4}
           />
           <p className="qf-char-count">{additionalSpecsLen}/900 character</p>
+          <FieldError message={errors.additionalSpecs} />
         </div>
 
-        {/* Request Sample checkbox */}
         <CheckboxRow
           checked={!!formData.requestSample}
           onChange={() => updateField('requestSample', !formData.requestSample)}
@@ -384,7 +386,6 @@ export default function StepTwo({ formData, updateField, errors }) {
             />
           ))}
 
-          {/* Custom needs added by user */}
           {customNeeds.map((need, i) => (
             <div key={i} className="qf-chk-row checked"
               style={{ justifyContent: 'space-between', alignItems: 'center' }}>
@@ -407,7 +408,6 @@ export default function StepTwo({ formData, updateField, errors }) {
           ))}
         </div>
 
-        {/* Add custom need */}
         {showCustomNeedInput ? (
           <div className="qf-custom-need-row">
             <input
@@ -441,6 +441,14 @@ export default function StepTwo({ formData, updateField, errors }) {
         <FieldError message={errors.customizationNeeds} />
       </div>
 
+      {/* ── Continue Button ── */}
+      <button
+        type="button"
+        className="nxt"
+        onClick={handleNext}
+      >
+        Continue <img src={arw} alt="" />
+      </button>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import "./Home.css";
 import "./Suppliers.css";
 import Secttl from "../Components/Sectionttl/Sectionttl.jsx";
@@ -9,8 +9,11 @@ import Sidebar from "../Components/Sidebar-suppliers/Sidebarsuppliers.jsx";
 import Footer from "../Components/Footer/Footer.jsx";
 import DabtoLoadingScreen from "./Loading.jsx";
 import { useNavigate } from "react-router-dom";
-import ProductInformation from "../Components/Forms/Stepone.jsx";
 import Progressbar from "../Components/Forms/Progressbar.jsx";
+
+// Import StepTwo
+
+import Specifications from "../Components/Forms/Steptwo.jsx"; // <-- adjust path if needed
 
 const INITIAL_FORM_DATA = {
   supplier: 'broadcast',
@@ -24,6 +27,16 @@ const INITIAL_FORM_DATA = {
   quantityUnit: 'pieces',
   flexibleQuantity: false,
   colorRequirements: '',
+  sizes: {},              // initialize sizes for StepTwo
+  sizeQuantities: {},     // initialize size quantities
+  customSizes: [],        // custom sizes
+  certifications: {},     // certifications
+  customizationNeeds: {}, // customization needs
+  customNeeds: [],        // additional custom needs
+  additionalSpecs: '',    // additional specifications
+  requestSample: false,   // request sample checkbox
+  qualityStandard: '',    // quality standard
+  sizeRange: '',          // size range selection
 };
 
 export default function Suppliers() {
@@ -35,7 +48,6 @@ export default function Suppliers() {
 
   const navigate = useNavigate();
 
-  // ─── Validation Logic ──────────────────────────────────────────────────────
   const handleContinue = () => {
     const newErrors = {};
 
@@ -45,26 +57,21 @@ export default function Suppliers() {
     if (!formData.materialType) newErrors.materialType = "Please select a material type";
     if (!formData.quantity || formData.quantity <= 0) newErrors.quantity = "Please enter a valid quantity";
     
-    // Optional: Only validate images if you want them to be mandatory
     if (formData.referenceImages.length === 0) {
       newErrors.referenceImages = "Please upload at least one reference image";
     }
 
     setErrors(newErrors);
 
-    // If there are no keys in newErrors, we can proceed to step 2
     if (Object.keys(newErrors).length === 0) {
       console.log("Validation successful! Proceeding to Step 2...");
-      // navigate("/next-step-route"); // Or update a 'step' state here
     } else {
-      // Scroll to the top of the form or first error if needed
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
   const updateField = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-    // Clear error for the field when user updates it so the red warning disappears
     if (errors[field]) {
       setErrors(prev => {
         const newErrs = { ...prev };
@@ -82,7 +89,6 @@ export default function Suppliers() {
     }
   };
 
-  // Fetch profile
   useEffect(() => {
     async function fetchProfile() {
       const { data, error } = await supabase
@@ -95,7 +101,6 @@ export default function Suppliers() {
     fetchProfile();
   }, []);
 
-  // Fetch suppliers
   useEffect(() => {
     async function fetchSuppliers() {
       const { data, error } = await supabase.from("Supplier Detail Page eng").select("*");
@@ -117,22 +122,16 @@ export default function Suppliers() {
         <div className="ttlr">
           <Secttl text="New Quote Request" />
           <div className="btnsr">
-            {/* Note: I'm assuming "Request Quote" is your submission button here */}
             <Viewallbttn text="Cancel" />
             <Scta text="Save Draft" onClick={() => navigate(-1)} />
           </div>
         </div>
 
-        <Progressbar fillPercent={33} text="Product Information" caption="step 1 of 3" />
-        
-        {/* Pass handleContinue to the onNext prop */}
-        <ProductInformation
-          formData={formData}
-          updateField={updateField}
-          errors={errors}
-          onNext={handleContinue} 
-        />
-        
+        <Progressbar fillPercent={60} text="Specifications" caption="step 2 of 3" />
+
+        {/* StepTwo Component */}
+        <Specifications formData={formData} updateField={updateField} errors={errors} />
+
         <Footer />
       </div>
     </div>

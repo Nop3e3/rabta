@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate } from "react-router-dom"; // <-- Added this import
 import './QuoteForm.css';
 import arw from "../../Assets/arrow_forward.svg";
 import form from "../../Assets/form.svg";
@@ -111,6 +112,7 @@ function CategoryCard({ cat, selected, onSelect }) {
 // ─── StepOne Component ───────────────────────────────────────────────────────
 export default function StepOne({ formData, updateField, errors, onNext }) {
   const fileInputRef = useRef(null);
+  const navigate = useNavigate(); // <-- Added this line
 
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files || []);
@@ -420,9 +422,13 @@ export default function StepOne({ formData, updateField, errors, onNext }) {
         </div>
       </div>
 
-      <button type="button" className='nxt' onClick={onNext}>
-        Continue <img src={arw} alt="" /> 
-      </button>
+       <button
+      type="button"
+      className="nxt"
+      onClick={() => navigate("/RequestQuote2")}
+    >
+      Continue <img src={arw} alt="" />
+    </button>
     </div>
   );
 }
