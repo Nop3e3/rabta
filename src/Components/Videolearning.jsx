@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Cta from "./Ctabttn/Ctabttn";
+
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100..900&display=swap');
 
@@ -40,7 +42,6 @@ const styles = `
       0 0 160px rgba(130,150,80,0.15);
   }
 
-  /* Thumbnail */
   .thumbnail {
     position: relative;
     width: 100%;
@@ -301,61 +302,6 @@ const styles = `
     letter-spacing: 0.01em;
   }
 
-  .cta-btn {
-    font-family: 'Lexend Exa', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    color: #edeee8;
-    background: linear-gradient(135deg, #6b7c3a 0%, #8fa048 100%);
-    border: none;
-    border-radius: 100px;
-    padding: 13px 28px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
-    box-shadow: 0 4px 20px rgba(130,160,60,0.25), inset 0 1px 0 rgba(255,255,255,0.15);
-  }
-
-  .cta-btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
-    border-radius: inherit;
-    pointer-events: none;
-  }
-
-  .cta-btn::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255,255,255,0.15);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.5s ease, height 0.5s ease, opacity 0.5s ease;
-    opacity: 0;
-  }
-
-  .cta-btn:hover {
-    transform: translateY(-2px) scale(1.03);
-    box-shadow: 0 8px 32px rgba(130,160,60,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
-  }
-
-  .cta-btn:active::after {
-    width: 200px;
-    height: 200px;
-    opacity: 0;
-  }
-
-  .cta-btn:active {
-    transform: translateY(0) scale(0.98);
-  }
-
   .divider {
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
@@ -364,9 +310,12 @@ const styles = `
   }
 `;
 
+const COURSE_PATH = "/FashionSupplyChainManagement";
+
 export default function FashionCourseCard() {
   const [progress, setProgress] = useState(0);
   const cardRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const t = setTimeout(() => setProgress(40), 600);
@@ -400,7 +349,7 @@ export default function FashionCourseCard() {
       <div className="card-wrapperr" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
         <div className="card" ref={cardRef}>
           {/* Thumbnail */}
-          <div className="thumbnail">
+          <div className="thumbnail" onClick={() => navigate(COURSE_PATH)}>
             <img
               className="thumbnail-img"
               src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=580&q=80"
@@ -446,7 +395,10 @@ export default function FashionCourseCard() {
                 <span className="next-up-label">Next up</span>
                 <span className="next-up-text">Module 5 · Sourcing Ethics</span>
               </div>
-              <Cta text="Go to course"/>
+              <Cta
+                text="Go to course"
+                path={COURSE_PATH}
+              />
             </div>
           </div>
         </div>

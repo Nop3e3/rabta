@@ -9,7 +9,7 @@ const TaskCard = () => {
   ];
 
   return (
-    <div className="container">
+
       <div className="card">
         {tasks.map((task) => (
           <div key={task.id} className="task-row">
@@ -23,7 +23,7 @@ const TaskCard = () => {
           </div>
         ))}
       </div>
-    </div>
+  
   );
 };
 

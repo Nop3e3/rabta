@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
-import Course2 from "../Components/Course2/Course2.jsx";
-import Viewallbttn from "../Components/Viewallbttn/Viewallbttn.jsx";
 import Secttl from "../Components/Sectionttl/Sectionttl.jsx";
 import Profiletopbar from "../Components/Searchbar/Topbar.jsx";
 import Sidebar from "../Components/Sidebarlearning.jsx";
@@ -9,16 +7,14 @@ import Welcomesec from "../Components/Welcomesec/Welcomsec.jsx";
 import Footer from "../Components/Footer/Footer.jsx";
 import DabtoLoadingScreen from "./Loading.jsx";
 import { supabase } from "../Supabase";
-import Vid from "../Components/Videolearning.jsx";
 import TaskCardd from "../Components/TaskCard/TaskCard.jsx";
 import { useNavigate } from "react-router-dom";
-import Pd from "../Components/Progressdashboard.jsx";
-import Coursessec from "../Components/Coursecards_comp/Coursecards_comp.jsx"; // ✅ imported from Home
-import Grid from "../Components/Grid/Grid.jsx";
+import Courseheader from "../Components/courseheader/courseheader.jsx";
+import Instructorc from "../Components/Instructorcar.jsx";
 export default function Suppliers() {
   const [profile, setProfile] = useState(null);
   const [courses, setCourses] = useState([]);
-  const [allCourses, setAllCourses] = useState([]); // ✅ for Recommended Courses section
+  const [allCourses, setAllCourses] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
@@ -31,7 +27,6 @@ export default function Suppliers() {
     }
   };
 
-  // Fetch profile
   useEffect(() => {
     async function fetchProfile() {
       const { data, error } = await supabase
@@ -44,7 +39,6 @@ export default function Suppliers() {
     fetchProfile();
   }, []);
 
-  // Fetch only the two specific courses (for Course2 cards)
   useEffect(() => {
     async function fetchCourses() {
       const { data, error } = await supabase
@@ -57,7 +51,6 @@ export default function Suppliers() {
     fetchCourses();
   }, []);
 
-  // ✅ Fetch all courses (for Recommended Courses section, same as Home.jsx)
   useEffect(() => {
     async function fetchAllCourses() {
       const { data, error } = await supabase.from("learning_hub").select("*");
@@ -66,7 +59,8 @@ export default function Suppliers() {
     fetchAllCourses();
   }, []);
 
-  if (loading || !profile) return <DabtoLoadingScreen onComplete={() => setLoading(false)} />;
+  if (loading || !profile)
+    return <DabtoLoadingScreen onComplete={() => setLoading(false)} />;
 
   return (
     <div className="homepage_bg">
@@ -74,8 +68,9 @@ export default function Suppliers() {
         <Sidebar />
       </div>
 
-      <div className="mainconnn">
-        <Profiletopbar image={profile?.pfp} />
+      <div className="mainconnn"><Courseheader />
+<Instructorc/>
+     
         <Welcomesec
           text="Learning Hub"
           caption="Upgrade your skills to maximize your business goals"
@@ -89,55 +84,13 @@ export default function Suppliers() {
           </div>
         </div>
 
-        <Pd />
-
         <div className="ttlcon">
           <Secttl text="Today's Goals" />
         </div>
 
         <TaskCardd />
 
-        <div className="centering">
-          <div className="ttlcon">
-            <Secttl text="Continue Learning" />
-            <Viewallbttn text="View All" />
-          </div>
-          <Vid />
-        </div>
-
-        {/* Two specific Course2 cards */}
-        <div className="course-list">
-              <div className="ttlcon">
-            <Secttl text="Recommended" />
-            <Viewallbttn text="View All" />
-          </div>
-          {courses.map((course) => (
-            <Course2
-              key={course["Course Name"]}
-              courseName={course["Course Name"]}
-              level={course.Level}
-              rating={course.Rating}
-              path={course.Path}
-              lessons={course.Module}
-              duration={course.Duration}
-              successPct={course["Success %"]}
-              providerName={course.Provider}
-              bannerImage={course.image}
-              providerLogo={course.provider_logo}
-              onEnrollClick={() => navigate(course.Path || "#")}
-            />
-          ))}
-        </div>
-
-        {/* ✅ Recommended Courses section — imported from Home.jsx */}
-        <div className="secsh">
-          <div className="ttlcon">
-            <Secttl text="Courses you might like" />
-            <Viewallbttn text="View All" />
-          </div>
-          <Coursessec courses={allCourses} />
-        </div>
-<Grid/>
+        
         <Footer />
       </div>
     </div>

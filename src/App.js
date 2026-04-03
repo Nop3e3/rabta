@@ -5,7 +5,7 @@ import Home from "./Pages/Home";
 import Newenterpenuers from "./Pages/NewEnterpenuers";
 import Suppliers from "./Pages/Suppliers";
 import Faq from "./Pages/FAQ"
-
+import FashionSupplyChainManagement from "./Pages/Course.jsx";
 import RequestQuote3 from "./Pages/RequestQuote3.jsx"
 import RequestQuote2 from "./Pages/RequestQuote2.jsx"
 import RequestQuote1 from "./Pages/RequestQuote1.jsx"
@@ -20,7 +20,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/RequestQuote1" element={<RequestQuote1 />} />
-      
+            <Route path="/FashionSupplyChainManagement" element={< FashionSupplyChainManagement />} />
       <Route path="/AcceptQuote" element={<AcceptQuote />} />
         <Route path="/RequestQuote2" element={<RequestQuote2/>} />
       <Route path="/RequestQuote3" element={<RequestQuote3/>} />
