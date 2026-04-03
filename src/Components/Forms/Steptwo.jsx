@@ -1,7 +1,13 @@
+
+import prev from "../../Assets/prev.svg";
+
+// ─── Constants ──────────────────────────────────────────────────────────────
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './QuoteForm.css';
 import arw from "../../Assets/arrow_forward.svg";
 import alert from "../../Assets/error.svg";
+
 // ─── Constants ──────────────────────────────────────────────────────────────
 
 const DEFAULT_SIZES = [
@@ -86,6 +92,8 @@ function RadioOption({ value, selected, onChange, label, description }) {
 // ─── StepTwo ─────────────────────────────────────────────────────────────────
 
 export default function StepTwo({ formData, updateField, onNext }) {
+  const navigate = useNavigate();
+
   const [newCustomSize, setNewCustomSize] = useState('');
   const [newCustomNeed, setNewCustomNeed] = useState('');
   const [showCustomNeedInput, setShowCustomNeedInput] = useState(false);
@@ -158,7 +166,7 @@ export default function StepTwo({ formData, updateField, onNext }) {
 
       {/* ── Info Banner ── */}
       <div className="qf-info-banner">
-        <span className="qf-info-icon"><img src={alert}alt="" /></span>
+        <span className="qf-info-icon"><img src={alert} alt="" /></span>
         <p className="qf-info-text">
           More details help suppliers provide accurate quotes. Skip any section if not applicable.
         </p>
@@ -442,13 +450,22 @@ export default function StepTwo({ formData, updateField, onNext }) {
       </div>
 
       {/* ── Continue Button ── */}
+    <div className='btnrowy'>
+         <button
+        type="button"
+        className="prev"
+        onClick={() => navigate("/RequestQuote1")}
+      ><img src={prev} alt="" />
+    Previous 
+      </button>
+      {/* ── Continue Button ── */}
       <button
         type="button"
         className="nxt"
-        onClick={handleNext}
+        onClick={() => navigate("/RequestQuote3")}
       >
         Continue <img src={arw} alt="" />
-      </button>
+      </button></div>
     </div>
   );
 }
