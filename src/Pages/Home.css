@@ -181,6 +181,9 @@ gap: 29px;
 }
 .course-list{
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 .centering{
   width: 100%;

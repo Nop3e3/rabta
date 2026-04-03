@@ -1,0 +1,94 @@
+
+
+.grid-wrapperg {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.cardg {
+  height: 250px;
+  border-radius: 20px;
+  display: flex;
+  align-items: flex-start; /* Aligns text to the top */
+  padding: 25px;
+  background-position: center;
+  background-size: cover;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  border: 1px solid #333; /* Subtle border for definition */
+}
+
+.cardg:hover {
+  transform: scale(1.02);
+}
+
+.card-titleg {
+  color: #ffffff;
+  font-family: 'Inter', sans-serif; /* Use a bold sans-serif font */
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  max-width: 90%;
+}
+
+/* Responsive design for tablets and mobile */
+@media (max-width: 992px) {
+  .grid-wrapperg {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+.grid-wrapperg {
+  display: grid;
+  /* Creates 3 equal columns */
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cardg {
+  height: 250px; /* Essential: Gives the box shape */
+  border-radius: 20px;
+  padding: 30px;
+  background-size: cover; /* Essential: Makes image fill the box */
+  background-position: center;
+  display: flex;
+  align-items: flex-start;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.cardg:hover {
+  transform: translateY(-5px);
+}
+
+.card-titleg {
+  color: white;
+  font-family: sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+  text-align: left;
+}
+
+/* Responsive: 2 columns on tablets, 1 on mobile */
+@media (max-width: 900px) {
+  .grid-wrapperg { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .grid-wrapperg { grid-template-columns: 1fr; }
+}

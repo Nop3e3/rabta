@@ -111,7 +111,7 @@ export default function Home() {
 
         <div className="secsh">
           <div className="ttlcon">
-            <Secttl text="Recommended Courses" />
+            <Secttl text="Courses you might like" />
             <Viewallbttn text="View All" />
           </div>
           <Coursessec courses={courses} />
