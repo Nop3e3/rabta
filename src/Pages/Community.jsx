@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import Polll from "../Components/Pollpost/Poll.jsx";
-import SocialPost from "../Components/Socialpost1/Socialpost1.jsx"; // Keep original SocialPost
-import SocialCard from "../Components/Txtpost/Txtpost.jsx"; // For posts id=2 & 3
+import SocialPost from "../Components/Socialpost1/Socialpost1.jsx";
+import SocialCard from "../Components/Txtpost/Txtpost.jsx";
 import Shipyllw from "../Components/ships yellow/Shipsyllw.jsx";
 import Comcard from "../Components/comcard/Comcard.jsx";
 import Shipwhite from "../Components/Shipwhite/Shipwhite.jsx";
@@ -16,13 +16,12 @@ import Footer from "../Components/Footer/Footer.jsx";
 import DabtoLoadingScreen from "./Loading.jsx";
 import Viewallbttn from "../Components/Viewallbttn/Viewallbttn.jsx";
 import Vid from "../Components/videopost/Videopost.jsx";
-
 export default function Home() {
-  const navigate = useNavigate(); // For SPA navigation
+  const navigate = useNavigate();
   const [profile, setProfile] = useState(null);
   const [communities, setCommunities] = useState([]);
-  const [communityPost, setCommunityPost] = useState(null); // post id=1
-  const [communityPosts, setCommunityPosts] = useState([]); // posts id=2 & 3
+  const [communityPost, setCommunityPost] = useState(null);
+  const [communityPosts, setCommunityPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -36,10 +35,11 @@ export default function Home() {
           .single();
         setProfile(profileData);
 
-        // Fetch all communities
+        // Fetch only communities with id 1, 2, 3
         const { data: communitiesData, error: communitiesError } = await supabase
           .from("community")
-          .select("*");
+          .select("*")
+          .in("id", [1, 2, 3]);
         if (communitiesError) throw communitiesError;
         setCommunities(communitiesData || []);
 
@@ -99,8 +99,8 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Render all communities */}
-        <div className="comcon">
+        {/* Render communities with id 1, 2, 3 only */}
+    <div className="comcon">
           {communities.map((community) => (
             <Comcard
               key={community.id}
@@ -125,7 +125,7 @@ export default function Home() {
             <SocialPost
               key={communityPost.id}
               avatarUrl={communityPost["posting_user's_pfp1"]}
-              brandName={communityPost["User's _group_name"] || "Community"} 
+              brandName={communityPost["User's _group_name"] || "Community"}
               userName={communityPost["User's_name"]}
               postDate="10 Feb 2026"
               caption={communityPost.post_text1}
@@ -146,7 +146,8 @@ export default function Home() {
           <SocialCard
             key={post.id}
             profileImg={post["posting_user's_pfp1"]}
-            brandName={post["User's _group_name"] || "Community"} 
+
+            brandName={post["User's _group_name"] || "Community"}
             metaData={post["User's_name"] + " • 10 Feb 2026"}
             content={post.post_text1 || post.post_text3}
             tags={["#Growth", "#SupplyChain"]}

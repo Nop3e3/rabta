@@ -47,3 +47,22 @@ font-style: normal;
 font-weight: 600;
 line-height: normal;
 }
+.rww{
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+.ct{
+  color: #FFF;
+font-family: "Lexend Exa";
+font-size: 20px;
+font-style: normal;
+font-weight: 900;
+line-height: normal;
+text-decoration-line: underline;
+text-decoration-style: solid;
+text-decoration-skip-ink: auto;
+text-decoration-thickness: auto;
+text-underline-offset: auto;
+text-underline-position: from-font;
+}

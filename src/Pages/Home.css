@@ -179,3 +179,41 @@ gap: 29px;
  
   gap: 20px;
 }
+.course-list{
+  width: 100%;
+}
+.centering{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 50px;
+  align-items: center;
+}
+.course{
+  color: #FFF;
+font-family: "Lexend Exa";
+font-size: 20px;
+font-style: normal;
+font-weight: 900;
+line-height: normal;
+text-decoration-line: underline;
+text-decoration-style: solid;
+text-decoration-skip-ink: auto;
+text-decoration-thickness: auto;
+text-underline-offset: auto;
+text-underline-position: from-font;
+}
+.lvl{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  color: #FFF;
+margin-top: -40px;
+font-family: "Lexend Exa";
+font-size: 20px;
+font-style: normal;
+gap:10px;
+font-weight: 400;
+line-height: normal;
+}

@@ -5,6 +5,7 @@ import Home from "./Pages/Home";
 import Newenterpenuers from "./Pages/NewEnterpenuers";
 import Suppliers from "./Pages/Suppliers";
 import Faq from "./Pages/FAQ"
+import LearningHub from "./Pages/LearningHub.jsx";
 import Community from "./Pages/Community";
 import ErrorPage from "./Pages/ErrorPage";
 import EliteAppareal from "./Pages/EliteAppareal";
@@ -12,6 +13,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/Learninghub" element={<LearningHub/>} />
       <Route path="/Faq" element={<Faq />} />
       <Route path="/NewEnterpenuers" element={<Newenterpenuers />} />
       <Route path="/Community" element={<Community />} />
