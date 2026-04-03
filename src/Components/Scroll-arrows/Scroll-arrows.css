@@ -42,13 +42,13 @@
   height: 15px;
 }
 
-.next .chevron {
+.nextTT .chevron {
   border-color: #ffffff; /* Brighter color for right arrow as seen in image */
   transform: rotate(-45deg);
   margin-right: 4px;
 }
 
-.prev .chevron {
+.prevVV .chevron {
   transform: rotate(135deg);
     border-color: #ffffffaa;
   margin-left: 4px;

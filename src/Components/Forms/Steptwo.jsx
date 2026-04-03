@@ -1,7 +1,4 @@
-
 import prev from "../../Assets/prev.svg";
-
-// ─── Constants ──────────────────────────────────────────────────────────────
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './QuoteForm.css';
@@ -9,7 +6,6 @@ import arw from "../../Assets/arrow_forward.svg";
 import alert from "../../Assets/error.svg";
 
 // ─── Constants ──────────────────────────────────────────────────────────────
-
 const DEFAULT_SIZES = [
   { id: 'small', label: 'Small' },
   { id: 'medium', label: 'Medium' },
@@ -40,7 +36,6 @@ const CUSTOMIZATION_OPTIONS = [
 ];
 
 // ─── Sub-components ──────────────────────────────────────────────────────────
-
 function FieldError({ message }) {
   if (!message) return null;
   return <p className="qf-field-error">⚠ {message}</p>;
@@ -90,7 +85,6 @@ function RadioOption({ value, selected, onChange, label, description }) {
 }
 
 // ─── StepTwo ─────────────────────────────────────────────────────────────────
-
 export default function StepTwo({ formData, updateField, onNext }) {
   const navigate = useNavigate();
 
@@ -107,7 +101,7 @@ export default function StepTwo({ formData, updateField, onNext }) {
   const customNeeds = formData.customNeeds || [];
   const additionalSpecsLen = (formData.additionalSpecs || '').length;
 
-  /* ── helpers ── */
+  // ── helpers ──
   const toggleSize = id => updateField('sizes', { ...sizes, [id]: !sizes[id] });
   const updateSizeQty = (id, val) => updateField('sizeQuantities', { ...sizeQuantities, [id]: val });
   const addCustomSize = () => {
@@ -139,13 +133,17 @@ export default function StepTwo({ formData, updateField, onNext }) {
     updateField('customNeeds', updated);
   };
 
-  /* ── VALIDATION ── */
+  // ── VALIDATION ──
   const validateStep = () => {
     const newErrors = {};
-    if (!formData.sizeRange) newErrors.sizes = "Please select a size range";
+    if (
+      !formData.sizeRange &&
+      !Object.values(sizes).some(v => v) &&
+      customSizes.length === 0
+    ) {
+      newErrors.sizes = "Select either a size range or at least one size";
+    }
     if (!formData.qualityStandard) newErrors.qualityStandard = "Please select a quality standard";
-    if (!Object.values(sizes).some(v => v) && customSizes.length === 0)
-      newErrors.sizes = "Select at least one default or custom size";
     if (!formData.additionalSpecs) newErrors.additionalSpecs = "Please provide additional specifications";
     if (!Object.values(customizationNeeds).some(v => v) && customNeeds.length === 0)
       newErrors.customizationNeeds = "Select at least one customization need";
@@ -157,14 +155,21 @@ export default function StepTwo({ formData, updateField, onNext }) {
     const validationErrors = validateStep();
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length === 0) {
-      onNext?.();
+      onNext?.(); // optional callback
+      navigate("/RequestQuote3");
     }
   };
+
+  const handlePrev = () => navigate("/RequestQuote1");
+
+  // Disable conflicting options
+  const sizeDisabled = !!formData.sizeRange;
+  const rangeDisabled = Object.values(sizes).some(v => v) || customSizes.length > 0;
 
   return (
     <div className="qf-step-content">
 
-      {/* ── Info Banner ── */}
+      {/* Info Banner */}
       <div className="qf-info-banner">
         <span className="qf-info-icon"><img src={alert} alt="" /></span>
         <p className="qf-info-text">
@@ -172,7 +177,7 @@ export default function StepTwo({ formData, updateField, onNext }) {
         </p>
       </div>
 
-      {/* ── Size / Dimensions ── */}
+      {/* Size / Dimensions */}
       <div className="qf-section">
         <div className="qf-section-header">
           <h2 className="qf-section-title">
@@ -185,6 +190,7 @@ export default function StepTwo({ formData, updateField, onNext }) {
             className="qf-select"
             value={formData.sizeRange || ''}
             onChange={e => updateField('sizeRange', e.target.value)}
+            disabled={rangeDisabled}
           >
             <option value="" disabled>Select a size range</option>
             {SIZE_RANGES.map(r => (
@@ -198,16 +204,16 @@ export default function StepTwo({ formData, updateField, onNext }) {
             <div key={sz.id} className={`qf-size-row ${sizes[sz.id] ? 'active' : ''}`}>
               <div
                 className={`qf-chk-box ${sizes[sz.id] ? 'checked' : ''}`}
-                style={{ cursor: 'pointer', flexShrink: 0 }}
-                onClick={() => toggleSize(sz.id)}
+                style={{ cursor: sizeDisabled ? 'not-allowed' : 'pointer', flexShrink: 0 }}
+                onClick={() => !sizeDisabled && toggleSize(sz.id)}
                 role="checkbox"
                 aria-checked={sizes[sz.id]}
                 tabIndex={0}
-                onKeyDown={e => e.key === 'Enter' && toggleSize(sz.id)}
+                onKeyDown={e => e.key === 'Enter' && !sizeDisabled && toggleSize(sz.id)}
               >
                 {sizes[sz.id] && <span className="qf-chk-mark">✓</span>}
               </div>
-              <span className="qf-size-lbl" onClick={() => toggleSize(sz.id)}>{sz.label}</span>
+              <span className="qf-size-lbl" onClick={() => !sizeDisabled && toggleSize(sz.id)}>{sz.label}</span>
               <span className="qf-size-pieces">pieces</span>
               <input
                 className="qf-size-count"
@@ -285,7 +291,7 @@ export default function StepTwo({ formData, updateField, onNext }) {
         <FieldError message={errors.sizes} />
       </div>
 
-      {/* ── Quality Standards ── */}
+      {/* Quality Standards */}
       <div className="qf-section">
         <div className="qf-section-header">
           <h2 className="qf-section-title">
@@ -319,7 +325,7 @@ export default function StepTwo({ formData, updateField, onNext }) {
         <FieldError message={errors.qualityStandard} />
       </div>
 
-      {/* ── Certifications ── */}
+      {/* Certifications */}
       <div className="qf-section">
         <div className="qf-section-header">
           <h2 className="qf-section-title">Select Required Certifications (Optional)</h2>
@@ -345,7 +351,7 @@ export default function StepTwo({ formData, updateField, onNext }) {
         </div>
       </div>
 
-      {/* ── Additional Specifications ── */}
+      {/* Additional Specifications */}
       <div className="qf-section">
         <div className="qf-section-header">
           <h2 className="qf-section-title">
@@ -376,7 +382,7 @@ export default function StepTwo({ formData, updateField, onNext }) {
         />
       </div>
 
-      {/* ── Customization Needs ── */}
+      {/* Customization Needs */}
       <div className="qf-section">
         <div className="qf-section-header">
           <h2 className="qf-section-title">
@@ -449,23 +455,15 @@ export default function StepTwo({ formData, updateField, onNext }) {
         <FieldError message={errors.customizationNeeds} />
       </div>
 
-      {/* ── Continue Button ── */}
-    <div className='btnrowy'>
-         <button
-        type="button"
-        className="prev"
-        onClick={() => navigate("/RequestQuote1")}
-      ><img src={prev} alt="" />
-    Previous 
-      </button>
-      {/* ── Continue Button ── */}
-      <button
-        type="button"
-        className="nxt"
-        onClick={() => navigate("/RequestQuote3")}
-      >
-        Continue <img src={arw} alt="" />
-      </button></div>
+      {/* Navigation */}
+      <div className="qf-nav-bttns">
+        <button className="prev" onClick={handlePrev}>
+          <img src={prev} alt="" /> Previous
+        </button>
+        <button className='nxt' type="button" onClick={handleNext}>
+          Continue <img src={arw} alt="" />
+        </button>
+      </div>
     </div>
   );
 }

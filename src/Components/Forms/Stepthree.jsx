@@ -1,7 +1,10 @@
+import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import './QuoteForm.css';
+import prev from "../../Assets/prev.svg";
+import arw from "../../Assets/arrow_forward.svg";
 
 // ─── Constants ──────────────────────────────────────────────────────────────
-
 const EGYPT_GOVERNORATES = [
   '', 'Cairo', 'Giza', 'Alexandria', 'Aswan', 'Asyut', 'Beheira',
   'Beni Suef', 'Dakahlia', 'Damietta', 'Faiyum', 'Gharbia', 'Ismailia',
@@ -29,7 +32,6 @@ const PAYMENT_OPTIONS = [
 ];
 
 // ─── Sub-components ──────────────────────────────────────────────────────────
-
 function FieldError({ message }) {
   if (!message) return null;
   return <p className="qf-field-error">⚠ {message}</p>;
@@ -57,8 +59,9 @@ function RadioOption({ value, selected, onChange, label, description }) {
 }
 
 // ─── StepThree ───────────────────────────────────────────────────────────────
-
-export default function StepThree({ formData, updateField, errors }) {
+export default function StepThree({ formData, updateField }) {
+  const navigate = useNavigate();
+  const [errors, setErrors] = useState({});
   const cities = formData.governorate ? getCities(formData.governorate) : [];
 
   const handleGovChange = gov => {
@@ -66,10 +69,26 @@ export default function StepThree({ formData, updateField, errors }) {
     updateField('city', '');
   };
 
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.governorate) newErrors.governorate = "Please select a governorate";
+    if (!formData.city) newErrors.city = "Please select a city";
+    if (!formData.deliveryTimeline) newErrors.deliveryTimeline = "Please choose a delivery timeline";
+    if (!formData.paymentTerms) newErrors.paymentTerms = "Please select payment terms";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleNext = () => {
+    if (validate()) {
+      navigate("/AcceptQuote"); // Redirect only if validation passes
+    }
+  };
+
   return (
     <div className="qf-step-content">
 
-      {/* ── Delivery Location ── */}
+      {/* Delivery Location */}
       <div className="qf-section">
         <div className="qf-section-header">
           <h2 className="qf-section-title">Delivery Location</h2>
@@ -125,14 +144,13 @@ export default function StepThree({ formData, updateField, errors }) {
         </div>
       </div>
 
-      {/* ── Delivery Timeline ── */}
+      {/* Delivery Timeline */}
       <div className="qf-section">
         <div className="qf-section-header">
           <h2 className="qf-section-title">
             Delivery Timeline <span className="qf-req">*</span>
           </h2>
         </div>
-
         <div className="qf-radio-stack">
           <RadioOption
             value="standard"
@@ -161,20 +179,18 @@ export default function StepThree({ formData, updateField, errors }) {
         {/* Required By Date */}
         <div className="qf-field" style={{ marginTop: '4px' }}>
           <label className="qf-field-label">Required By Date (Optional)</label>
-          <div style={{ position: 'relative' }}>
-            <input
-              className="qf-date-inp"
-              type="date"
-              value={formData.requiredByDate || ''}
-              onChange={e => updateField('requiredByDate', e.target.value)}
-              min={new Date().toISOString().split('T')[0]}
-            />
-          </div>
+          <input
+            className="qf-date-inp"
+            type="date"
+            value={formData.requiredByDate || ''}
+            onChange={e => updateField('requiredByDate', e.target.value)}
+            min={new Date().toISOString().split('T')[0]}
+          />
           <p className="qf-helper-note">Helps suppliers prioritize your order</p>
         </div>
       </div>
 
-      {/* ── Budget Range ── */}
+      {/* Budget Range */}
       <div className="qf-section">
         <div className="qf-section-header">
           <h2 className="qf-section-title">
@@ -202,7 +218,6 @@ export default function StepThree({ formData, updateField, errors }) {
           />
         </div>
 
-        {/* Hide budget toggle */}
         <div
           className="qf-toggle-row"
           onClick={() => updateField('hideBudget', !formData.hideBudget)}
@@ -220,7 +235,7 @@ export default function StepThree({ formData, updateField, errors }) {
         <p className="qf-helper-note">Helps suppliers prioritize your order</p>
       </div>
 
-      {/* ── Preferred Payment Terms ── */}
+      {/* Preferred Payment Terms */}
       <div className="qf-section">
         <div className="qf-section-header">
           <h2 className="qf-section-title">
@@ -242,7 +257,7 @@ export default function StepThree({ formData, updateField, errors }) {
         <FieldError message={errors.paymentTerms} />
       </div>
 
-      {/* ── Additional Notes ── */}
+      {/* Additional Notes */}
       <div className="qf-section">
         <div className="qf-section-header">
           <h2 className="qf-section-title">Additional Notes</h2>
@@ -255,6 +270,25 @@ export default function StepThree({ formData, updateField, errors }) {
           onChange={e => updateField('additionalNotes', e.target.value)}
           rows={4}
         />
+      </div>
+
+      {/* Navigation Buttons */}
+      <div className='btnrowy'>
+        <button
+          type="button"
+          className="prev"
+          onClick={() => navigate("/RequestQuote2")}
+        >
+          <img src={prev} alt="" /> Previous
+        </button>
+
+        <button
+          type="button"
+          className="nxt"
+          onClick={handleNext}
+        >
+          Send quote <img src={arw} alt="" />
+        </button>
       </div>
 
     </div>
