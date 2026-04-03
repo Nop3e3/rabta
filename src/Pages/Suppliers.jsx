@@ -7,6 +7,8 @@ import Profiletopbar from "../Components/Searchbar/Topbar.jsx";
 import Sidebar from "../Components/Sidebar-suppliers/Sidebarsuppliers.jsx";
 import Welcomesec from "../Components/Welcomesec/Welcomsec.jsx";
 import { supabase } from "../Supabase";
+import Cta from "../Components/Ctabttn/Ctabttn.jsx";
+import Scta from "../Components/SecondaryCtabttn/SecondaryCtabttn.jsx";
 import Sort from "../Assets/filter_list.svg";
 import filtericon from "../Assets/filter_alt.svg";
 import Footer from "../Components/Footer/Footer.jsx";
@@ -78,7 +80,12 @@ export default function Suppliers() {
           <Filterbttn text="Filter" image={filtericon} />
           <Filterbttn text="Sort by" image={Sort} />
         </div>
+<div className="btnsr"><Scta text ="View all requests"/>
 
+<Cta text="Request Quote"   path="/RequestQuote1" />
+   
+
+</div>
         {suppliers.map((supplier) => (
           <SuppliersCard
             key={supplier.id}
@@ -102,6 +109,7 @@ export default function Suppliers() {
 
         <div className="pagination-section">
           <Pagination />
+       
         </div>
 
         <Footer />

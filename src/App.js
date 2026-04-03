@@ -5,6 +5,8 @@ import Home from "./Pages/Home";
 import Newenterpenuers from "./Pages/NewEnterpenuers";
 import Suppliers from "./Pages/Suppliers";
 import Faq from "./Pages/FAQ"
+
+import RequestQuote1 from "./Pages/RequestQuote1.jsx"
 import Mentorship from "./Pages/Mentorship"
 import LearningHub from "./Pages/LearningHub.jsx";
 import Community from "./Pages/Community";
@@ -14,7 +16,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/Mentorship" element={<Mentorship />} />
+      <Route path="/RequestQuote1" element={<RequestQuote1 />} />
+       <Route path="/Mentorship" element={<Mentorship />} />
       <Route path="/Learninghub" element={<LearningHub/>} />
       <Route path="/Faq" element={<Faq />} />
       <Route path="/NewEnterpenuers" element={<Newenterpenuers />} />
