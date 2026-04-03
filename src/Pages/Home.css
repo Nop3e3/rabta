@@ -179,11 +179,23 @@ gap: 29px;
  
   gap: 20px;
 }
+.shipsy{
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: flex-start;
+  padding-top: 50px;
+}
 .course-list{
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 32px;
+}
+.cons{
+  display:flex;
+  flex-direction: column;
+  width: 100%;
 }
 .centering{
   width: 100%;

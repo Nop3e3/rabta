@@ -24,7 +24,8 @@ export default function ConsultantCard({
       <div className="cc-card">
 
         {/* Top Section */}
-       <div className="contop"> <div className="cc-top">
+       <div className="contop">
+         <div className="cc-top">
           <img src={avatarUrl} alt={name} className="cc-avatar" />
 
           <div className="cc-info">

@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@300;400;500;600&display=swap');
+
+
+.card-container {
+  background-color: #121212;
+  border: 1px solid #2a2a2a;
+  border-radius: 16px;
+  padding: 32px;
+  width: 100%;
+  max-width: 800px;
+  color: #ffffff;
+  font-family: 'Lexend Exa', sans-serif;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Header Styles */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #3d4135;
+}
+
+.name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #FFF;
+
+text-align: right;
+font-family: "Lexend Exa";
+font-size: 20px;
+font-style: normal;
+font-weight: 600;
+line-height: 24px; 
+
+  font-size: 22px;
+  font-weight: 700;
+
+  letter-spacing: -0.3px;
+}
+
+.ribbon-icon {
+  font-size: 14px;
+  color: #c4d4a8; /* Muted lime green from image */
+}
+.icon-text{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 4px;
+}
+.card-header h2 {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.subtitle {
+  color: #888;
+  font-size: 12px;
+  margin: 4px 0 0 0;
+}
+
+/* Topic Section */
+.card-content h3 {
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+}
+.card-content{
+width: 100%;
+display: flex;
+flex-direction: column;
+}
+.description {
+  color: #b0b0b0;
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 90%;
+}
+
+/* Footer Section */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  width: 100%;
+}
+
+.footer-details {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #b0b0b0;
+  font-size: 12px;
+}
+
+.separator {
+  color: #555;
+}
+
+.reschedule-btn {
+  background-color: #3d4135;
+  color: #ffffff;
+  border: 1px solid #4e5344;
+  border-radius: 25px;
+  padding: 12px 32px;
+  font-family: 'Lexend Exa', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.reschedule-btn:hover {
+  background-color: #4e5344;
+}

@@ -1,0 +1,126 @@
+/* Import Lexend Exa - If you aren't using a plugin, ensure this is in your index.html head */
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@300;400;600&display=swap');
+
+
+
+.containeri {
+  font-family: 'Lexend Exa', sans-serif;
+  color: #ffffff;
+  width: 100%;
+ 
+  padding: 40px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  letter-spacing: 0.5px;
+}
+
+.list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cardi:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.cardi-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cardi-title {
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+
+.cardi-count {
+  font-size: 14px;
+  color: #888888;
+  font-weight: 300;
+}
+
+.arrow-icon {
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+
+/* Enhanced Hover Interactions */
+
+.cardi {
+  background: linear-gradient(145deg, #222226, #18181b);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  
+  /* Smooth transition for all properties */
+  transition: 
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+    border-color 0.3s ease, 
+    background 0.3s ease, 
+    box-shadow 0.3s ease;
+  
+  /* Ensure shadow is invisible initially */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0);
+}
+
+.cardi:hover {
+  /* Lift effect */
+  transform: translateY(-4px); 
+  
+  /* Light up the border */
+  border-color: rgba(255, 255, 255, 0.4);
+  
+  /* Subtle glow/shadow for depth */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  
+  /* Shift background slightly lighter */
+  background: linear-gradient(145deg, #2a2a2e, #1c1c20);
+}
+
+/* Subtle animation for the arrow on hover */
+.cardi:hover .arrow-icon {
+  transform: translateX(4px);
+  color: #ffffff;
+}
+
+.arrow-icon {
+  color: #ffffff;
+  opacity: 0.7;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Dim other text slightly when NOT hovered to draw focus to the active one */
+.list-wrapper:hover .cardi:not(:hover) {
+  opacity: 0.7;
+  filter: grayscale(0.2);
+}
+
+
+
+
+.cardi {
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 16px;
+background: rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
